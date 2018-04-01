@@ -97,3 +97,19 @@ span{
 	position: absolute;
 	left: 0;
 }
+
+@keyframes landscape-animation {
+    0% { transform: translateX(100px); }
+    50% { transform: translateX(-100px); }
+    100% {transform: translateX(100px); }
+    
+}
+
+#landscape {
+       	animation-name: landscape-animation;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+}
+

@@ -11,18 +11,24 @@ function jump(){
 }
 
 $(document).ready(function(){
+
+    var key ={
+        LEFT: 37,
+        RIGHT: 39,
+        UP: 38
+    };
     $(document).on("keydown", function(e){
-
-        if(e.keyCode == 39){
-            moveRight();
-        }
-
-        if(e.keycode == 37){
-            moveRight();
-        }
-
-        if(e.keycode == 38){
-            jump();
+        switch(e.which){
+            case key.LEFT:
+                $("#player").css('left', function(i, v){
+                    return parseInt(v,10) - width;
+                });
+                break;
+            case key.RIGHT:
+                $("#player").css('left', function(i, v){
+                    return parseInt(v,10) + width;
+                });
+                break;
         }
     });
 });

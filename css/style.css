@@ -85,18 +85,6 @@ span{
 }
 
 
-@keyframes platform-animation{
-
-}
-
-#plaform {
-
-}
-
-#player {
-	position: absolute;
-	left: 0;
-}
 
 @keyframes landscape-animation {
     0% { transform: translateX(100px); }
@@ -105,9 +93,69 @@ span{
     
 }
 
-#landscape {
+.landscape {
        	animation-name: landscape-animation;
         animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+}
+@keyframes landscapeY-animation {
+   from {transform: translateY(0px);}
+	to {transform: translateY(-1000px);}
+    
+}
+
+#landscape {
+       	animation-name: landscapeY-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+       
+}
+
+
+
+@keyframes platform-animation{
+	from {transform: translateY(0px);}
+	to {transform: translateY(-1000px);}
+
+}
+
+.platform {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+}
+
+@keyframes stingPlatform-animation{
+	from {transform: translateY(0px);}
+	to {transform: translateY(-1000px);}
+
+}
+
+.stingPlatform {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+}
+
+@keyframes player-animation{
+	from {transform: translateY(0px);}
+	to {transform: translateY(-1000px);}
+
+}
+
+#player {
+
+		animation-name: player-animation;
+        animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
 

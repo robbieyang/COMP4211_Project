@@ -7,3 +7,17 @@
 	height: 10vh;
 	width: 10vw;
 }
+
+
+@keyframes platform-animation{
+
+}
+
+#plaform {
+
+}
+
+#player {
+	position: absolute;
+	left: 0;
+}

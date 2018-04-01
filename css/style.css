@@ -1,11 +1,4 @@
 
-.main{
-	height: 700px; 
-	background-image: url('../resources/brick.svg'); 
-	background-repeat: no-repeat; 
-	background-position: center;
-	position: absolute;
-}
 .text {
 	display: block;
 	margin-bottom: 0px;
@@ -32,6 +25,60 @@
 	height: 30px;
 }
 
+
+#main{
+	height: 700px; 
+	background-image: url('../resources/brick.svg'); 
+	background-repeat: no-repeat; 
+	background-position: center;
+	position: absolute;
+}
+
+#gameTitle { 
+		display: inline-block; 
+		padding: 20px 20px;
+		color: white;
+		position: absolute;
+		top: 15%;
+		left: 26%;
+		vertical-align: middle;
+		font-family: 'papyrus', fantasy;
+		font-weight: bold;
+		text-decoration: none;
+		font-size: 7vw;
+		background-color: none;
+	}
+	
+#button { 
+		display: inline-block; 
+		padding: 30px 30px;
+		color: white;
+		position: absolute;
+		top: 53%;
+		left: 68%;
+		vertical-align: middle;
+		font-family: 'fantasy', fantasy;
+		text-decoration: none;
+		font-size: 5vw;
+		background-color: #1E90FF;
+		border: 3px solid #F0FFFF;
+}	
+	
+#instruction {
+		display: inline-block; 
+		padding: 30px 30px;
+		color: white;
+		position: absolute;
+		top: 50%;
+		left: 10%;
+		vertical-align: middle;
+		font-family: 'papyrus', fantasy;
+		text-decoration: none;
+		font-size: 2vw;
+		background-color: none;
+		border: 3px solid #F0FFFF;
+}
+	
 span{
 	float: left;
 	display: block;

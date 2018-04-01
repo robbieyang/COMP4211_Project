@@ -1,11 +1,40 @@
-#background{
-	height: 100vh;
-	width: 100vw;
+
+.main{
+	height: 700px; 
+	background-image: url('../resources/brick.svg'); 
+	background-repeat: no-repeat; 
+	background-position: center;
+	position: absolute;
+}
+.text {
+	display: block;
+	margin-bottom: 0px;
+	padding-top: 0px; 
+	font-family: 'Gloria Hallelujah', cursive;
+	font-size: 2em;
+	color: white;
+	width: 500px;
+	margin-left: 400px;
+	float: left;
 }
 
-.obstacle {
-	height: 10vh;
-	width: 10vw;
+.life{
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	margin-right: 3px;
+	margin-top: 10px;
+	border-spacing: 10px;
+	background-color: red;
+	float: left;
+	display: block;
+	width: 15px;
+	height: 30px;
+}
+
+span{
+	float: left;
+	display: block;
 }
 
 

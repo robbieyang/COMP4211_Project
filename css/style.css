@@ -24,6 +24,10 @@
 	width: 15px;
 	height: 30px;
 }
+.platform{
+	margin: 2px;
+	display: block;
+}
 
 
 #main{
@@ -98,6 +102,7 @@ span{
         animation-duration: 5s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        animation-play-state: paused;
 
 }
 @keyframes landscapeY-animation {
@@ -111,6 +116,7 @@ span{
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        animation-play-state: paused;
        
 }
 
@@ -122,14 +128,64 @@ span{
 
 }
 
-.platform {
+#platform1 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+#platform2 {
 
 		animation-name: platform-animation;
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
 
+        animation-play-state: paused;
+
+
 }
+#platform3 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+
+#platform4 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+
+#platform5 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+
 
 @keyframes stingPlatform-animation{
 	from {transform: translateY(0px);}
@@ -143,6 +199,7 @@ span{
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        animation-play-state: paused;
 
 }
 
@@ -159,6 +216,7 @@ span{
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        animation-play-state: paused;
 
 }
 

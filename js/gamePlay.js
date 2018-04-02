@@ -32,13 +32,21 @@ function checkGameOver(){
 function makePlatform(id) {
     console.log("id "+id);
     var tempId = id+"svg";
-    document.getElementById(id+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
-    document.getElementById(id+"svg").setAttribute("y", 2500);
     var newid="#"+id;
-     var temp =  Math.floor((Math.random() * 2000)); 
-    setTimeout(function() {
-        $(newid).css("animationPlayState", "running");
-    }, Math.floor((Math.random() * 10000)+2000));
+    if(id.includes("platform")){
+        document.getElementById(id+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
+        document.getElementById(id+"svg").setAttribute("y", 2500);
+        setTimeout(function() {
+            $(newid).css("animationPlayState", "running");
+        }, Math.floor((Math.random() * 10000)+2000));
+    }else if(id.includes("stingPlatform")){
+        document.getElementById(id+"svg").setAttribute("x", Math.floor((Math.random() * 770)) );
+        document.getElementById(id+"svg").setAttribute("y", 1000);
+        setTimeout(function() {
+            $(newid).css("animationPlayState", "running");
+        }, Math.floor((Math.random() * 40000)));
+
+    }
 
 
 }
@@ -46,10 +54,12 @@ function makePlatform(id) {
 function init(){
     document.getElementById("platform2"+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
     document.getElementById("platform3"+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
-    document.getElementById("platform4"+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
-    document.getElementById("platform5"+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
+    document.getElementById("stingPlatform1"+"svg").setAttribute("x",  Math.floor((Math.random() * 770)));
+    document.getElementById("stingPlatform2"+"svg").setAttribute("x",  Math.floor((Math.random() * 770)));
     document.getElementById("platform2"+"svg").setAttribute("y",  Math.floor((Math.random() * 2000)+1000));
     document.getElementById("platform3"+"svg").setAttribute("y",  Math.floor((Math.random() * 2000)+500));
+    document.getElementById("stingPlatform1"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
+    document.getElementById("stingPlatform2"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
 
 
 }
@@ -109,6 +119,37 @@ $(document).ready(function(){
 
         });
 
+      $("#stingPlatform1").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#stingPlatform1").css("animation-play-state","paused");
+            makePlatform("stingPlatform1");
+
+        });
+      $("#stingPlatform2").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#stingPlatform2").css("animation-play-state","paused");
+            makePlatform("stingPlatform2");
+
+        });
+      $("#stingPlatform3").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#stingPlatform3").css("animation-play-state","paused");
+            makePlatform("stingPlatform3");
+
+        });
+      $("#stingPlatform4").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#stingPlatform4").css("animation-play-state","paused");
+            makePlatform("stingPlatform4");
+
+        });
+      $("#stingPlatform5").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#stingPlatform5").css("animation-play-state","paused");
+            makePlatform("stingPlatform5");
+
+        });
+
     init();
     setTimeout(function() {
         $("#platform1").css("animationPlayState", "running");
@@ -118,8 +159,13 @@ $(document).ready(function(){
         makePlatform("platform5");
         $("#player").css("animationPlayState", "running");
         $(".landscape").css("animationPlayState", "running");
-        $("#landscape").css("animationPlayState", "running")
-        $(".stingPlatform").css("animationPlayState", "running");
+        $("#landscape").css("animationPlayState", "running");
+        $("#stingPlatform1").css("animationPlayState", "running");
+        $("#stingPlatform2").css("animationPlayState", "running");
+        makePlatform("stingPlatform3");
+        makePlatform("stingPlatform4");
+        makePlatform("stingPlatform5");
+
     }, 3000);
 
 

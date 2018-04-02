@@ -24,10 +24,7 @@
 	width: 15px;
 	height: 30px;
 }
-.platform{
-	margin: 2px;
-	display: block;
-}
+
 
 
 #main{
@@ -193,7 +190,43 @@ span{
 
 }
 
-.stingPlatform {
+#stingPlatform1 {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+#stingPlatform2 {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+#stingPlatform3 {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+#stingPlatform4 {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+#stingPlatform5 {
 
 		animation-name: stingPlatform-animation;
         animation-duration: 15s;

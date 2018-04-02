@@ -1,17 +1,29 @@
-function moveRight(){
-    $("#player").animate({"left":"-= 1px"}, "slow");
-}
-
 function moveLeft(){
-    $("#player").animate({"left":"+= 1px"}, "slow");
+    
 }
 
+function moveRight(){
+
+}
 function jump(){
     
 }
 
-$(document).ready(function(){
+//return true if the player's bottom <= platform's top
+function collisionWithPlatforms(height){
 
+}
+
+// return true if the player's top <= ceiling bottom position
+function collisionWithceiling(){
+
+}
+
+function checkGameOver(){
+
+}
+$(document).ready(function(){
+    var r = 0;
     var key ={
         LEFT: 37,
         RIGHT: 39,
@@ -20,14 +32,11 @@ $(document).ready(function(){
     $(document).on("keydown", function(e){
         switch(e.which){
             case key.LEFT:
-                $("#player").css('left', function(i, v){
-                    return parseInt(v,10) - width;
-                });
+                moveLeft();
+                //console.log($("#player").position().left);
                 break;
             case key.RIGHT:
-                $("#player").css('left', function(i, v){
-                    return parseInt(v,10) + width;
-                });
+                moveRight();
                 break;
         }
     });

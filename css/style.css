@@ -131,13 +131,6 @@ span{
 
 }
 
-<<<<<<< HEAD
-#plaform {
-	animation-name: platform-animation;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-	animation-play-state: paused;
-=======
 @keyframes stingPlatform-animation{
 	from {transform: translateY(0px);}
 	to {transform: translateY(-1000px);}
@@ -156,12 +149,12 @@ span{
 @keyframes player-animation{
 	from {transform: translateY(0px);}
 	to {transform: translateY(-1000px);}
->>>>>>> 1502f972742fbf9f10fa972dba697a803a59a25f
 
 }
 
-#player {
 
+#player {
+		position: absolute;
 		animation-name: player-animation;
         animation-duration: 15s;
         animation-iteration-count: infinite;

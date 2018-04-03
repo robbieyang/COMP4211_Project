@@ -32,8 +32,8 @@
 	background-repeat: no-repeat; 
 	background-position: center;
 	position: absolute;
-	display: block;
-	/*animation-name: fadeIn;
+	/*display: block;
+	animation-name: fadeIn;
 	animation-duration: 2s;
 	animation-timing-function: linear;
 	animation-iteration-count: 1;
@@ -130,6 +130,21 @@
 	animation-fill-mode: none;
 }	
 
+#gameOverWording{
+	display: inline-block; 
+	padding: 25px 25px;
+	color: red;
+	position: absolute;
+	top: 26%;
+	left: 28%;
+	vertical-align: middle;
+	font-family: 'papyrus', fantasy;
+	text-decoration: none;
+	font-size: 6.5vw;
+	font-weight: bold;
+	background-color: none;
+}	
+
 #finalScore {
 	display: inline-block; 
 	padding: 20px 20px;
@@ -181,7 +196,6 @@ span{
         animation-play-state: paused;
        
 }
-
 
 
 @keyframes platform-animation{
@@ -341,6 +355,7 @@ span{
 		top : 100;
 	}
 }
+
 #playermoveY{
 		position: absolute;
 		animation-name: player-move-Y;

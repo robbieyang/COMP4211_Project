@@ -24,7 +24,6 @@ function collisionWithPlatforms(nameOfObject){
 
     if(Math.floor(player_bottom - platform_top) <= 10 || Math.floor(player_bottom - platform_top) >= 0){
 
-<<<<<<< HEAD
         if(player_right - platform_left >= 8 && platform_right - player_left >= 8){
             return true;
         }
@@ -37,11 +36,24 @@ function collisionWithPlatforms(nameOfObject){
 
 }
 
-function supportingPlatform(nameOfObject){
-    var player_bottom = $("svg #player")[0].getBoundingClientRect().bottom;
+function startAnimation(){
+    $(".landscape").css("animationPlayState", "running");
+    $("#landscape").css("animationPlayState", "running");
+    $("#platform1").css("animationPlayState", "running");
+    $("#platform2").css("animationPlayState", "running");
+    $("#platform3").css("animationPlayState", "running");
+    $("#platform4").css("animationPlayState", "running");
+    $("#platform5").css("animationPlayState", "running");
+    $("#stingPlatform1").css("animationPlayState", "running");
+    $("#stingPlatform2").css("animationPlayState", "running");
+    $("#stingPlatform3").css("animationPlayState", "running");
+    $("#stingPlatform4").css("animationPlayState", "running");
+    $("#stingPlatform5").css("animationPlayState", "running");
+    $("#player").css("animationPlayState", "running");
+    $("#playermoveY").css("animationPlayState", "running");
+
 }
 // return true if the player's top <= ceiling bottom position
-=======
 var timeRemaining = 15;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
@@ -70,7 +82,6 @@ function collisionWithceiling(){
 
 }
 
->>>>>>> 9108e57c6a60f6a04ef656811949ace984b33394
 
 function checkGameOver(){
 	
@@ -119,6 +130,8 @@ function init(){
 
 }
 $(document).ready(function(){
+    init();
+    startAnimation();
     var r = 0;
     var n = 0;
     var key ={

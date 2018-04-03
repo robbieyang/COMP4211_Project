@@ -35,92 +35,96 @@
 }
 
 #gameTitle { 
-		display: inline-block; 
-		padding: 20px 20px;
-		color: white;
-		position: absolute;
-		top: 15%;
-		left: 26%;
-		vertical-align: middle;
-		font-family: 'papyrus', fantasy;
-		font-weight: bold;
-		text-decoration: none;
-		font-size: 7vw;
-		background-color: none;
-	}
-	
+	display: inline-block; 
+	padding: 20px 20px;
+	color: white;
+	position: absolute;
+	top: 15%;
+	left: 26%;
+	vertical-align: middle;
+	font-family: 'papyrus', fantasy;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 7vw;
+	background-color: none;
+}
+
 #startButton { 
-		display: inline-block; 
-		padding: 30px 30px;
-		color: white;
-		position: absolute;
-		top: 53%;
-		left: 68%;
-		vertical-align: middle;
-		font-family: 'fantasy', fantasy;
-		text-decoration: none;
-		font-size: 5vw;
-		background-color: #1E90FF;
-		border: 3px solid #F0FFFF;
+	display: inline-block; 
+	padding: 30px 30px;
+	color: white;
+	position: absolute;
+	top: 53%;
+	left: 68%;
+	vertical-align: middle;
+	font-family: 'fantasy', fantasy;
+	text-decoration: none;
+	font-size: 5vw;
+	background-color: #1E90FF;
+	border: 3px solid #F0FFFF;
 }	
 	
 #instruction {
-		display: inline-block; 
-		padding: 15px 15px;
-		color: white;
-		position: absolute;
-		top: 47%;
-		left: 8%;
-		vertical-align: middle;
-		font-family: 'papyrus', fantasy;
-		text-decoration: none;
-		font-size: 1.5vw;
-		background-color: none;
-		border: 3px solid #F0FFFF;
-}
-
-#gameOver { 
-		display: inline-block; 
-		padding: 20px 20px;
-		color: red;
-		position: absolute;
-		top: 17%;
-		left: 28%;
-		vertical-align: middle;
-		font-family: 'papyrus', fantasy;
-		font-weight: bold;
-		text-decoration: none;
-		font-size: 7.5vw;
-		background-color: none;
+	display: inline-block; 
+	padding: 15px 15px;
+	color: white;
+	position: absolute;
+	top: 47%;
+	left: 8%;
+	vertical-align: middle;
+	font-family: 'papyrus', fantasy;
+	text-decoration: none;
+	font-size: 1.5vw;
+	background-color: none;
+	border: 3px solid #F0FFFF;
 }
 	
 #restartButton { 
-		display: inline-block; 
-		padding: 25px 25px;
-		color: white;
-		position: absolute;
-		top: 70%;
-		left: 40%;
-		vertical-align: middle;
-		font-family: 'fantasy', fantasy;
-		text-decoration: none;
-		font-size: 4.5vw;
-		background-color: #1E90FF;
-		border: 3px solid #F0FFFF;
+	display: inline-block; 
+	padding: 25px 25px;
+	color: white;
+	position: absolute;
+	top: 70%;
+	left: 40%;
+	vertical-align: middle;
+	font-family: 'fantasy', fantasy;
+	text-decoration: none;
+	font-size: 4.5vw;
+	background-color: #1E90FF;
+	border: 3px solid #F0FFFF;
 }	
-	
+
+#gameover-container {
+	transform: translate(500px,600px);
+}
+
+@keyframes gameover-animation {
+    from { transform: rotate(0deg); font-size: 10px; opacity: 0; }
+    to   { transform: rotate(360deg); font-size: 150px; opacity: 1; }
+}
+
+#gameOver {
+	font-family: 'papyrus', fantasy;
+	animation-name: gameover-animation;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	animation-play-state: paused;
+	animation-fill-mode: none;
+}	
+
 #finalScore {
-		display: inline-block; 
-		padding: 20px 20px;
-		color: white;
-		position: absolute;
-		top: 45%;
-		left: 40%;
-		vertical-align: middle;
-		font-family: 'papyrus', fantasy;
-		text-decoration: none;
-		font-size: 4vw;
-		background-color: none;
+	display: inline-block; 
+	padding: 20px 20px;
+	color: white;
+	position: absolute;
+	top: 45%;
+	left: 40%;
+	vertical-align: middle;
+	font-family: 'papyrus', fantasy;
+	text-decoration: none;
+	font-size: 4vw;
+	background-color: none;
 }	
 		
 	

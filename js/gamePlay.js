@@ -19,7 +19,7 @@ function collisionWithPlatforms(nameOfObject){
     
 }
 
-var timeRemaining = 181;
+var timeRemaining = 15;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
 	var minutes = Math.floor(timeRemaining/60);
@@ -32,6 +32,13 @@ function countDown() {
 	document.getElementById("time").innerHTML = minutes+":"+seconds;
 	if (timeRemaining > 0)
 		setTimeout(countDown, 1000);
+	if (minutes =="0" && seconds=="00") {
+		console.log("Time's up");
+		$("#gameOver").show();
+		$("#gameOver").css("animationPlayState", "running");
+		//Link the gameOver scene
+		//document.getElementById("gameOver").style.display = "block";
+	}
 }
 	
 
@@ -40,8 +47,16 @@ function collisionWithceiling(){
 
 }
 
-function checkGameOver(){
 
+function checkGameOver(){
+	
+	
+	
+	
+	//Game Over wordings will be shown with animation
+	$("#gameOver").show();
+	$("#gameOver").css("animationPlayState", "running");
+	
 }
 
 
@@ -101,7 +116,7 @@ $(document).ready(function(){
                 break;
         }
     });
-
+	
     $("#platform1").on("animationend", function() {
             // You need to stop the animation here
             $("#platform1").css("display","none");
@@ -166,7 +181,7 @@ $(document).ready(function(){
 
         });
 
-    init();
+	init();
 	
     setTimeout(function() {
         $("#platform1").css("animationPlayState", "running");
@@ -183,7 +198,7 @@ $(document).ready(function(){
         makePlatform("stingPlatform4");
         makePlatform("stingPlatform5");
 
-    }, 3000);
+    }, 2000);
 	
 	countDown();
 	

@@ -19,6 +19,22 @@ function collisionWithPlatforms(nameOfObject){
     
 }
 
+var timeRemaining = 181;
+function countDown() {
+	timeRemaining = timeRemaining - 1;
+	var minutes = Math.floor(timeRemaining/60);
+	var seconds = Math.floor(timeRemaining-(minutes*60));
+	if (seconds == "0"){
+		seconds= "00";
+	} else if (seconds < 10){
+		seconds = "0"+seconds;
+	}	
+	document.getElementById("time").innerHTML = minutes+":"+seconds;
+	if (timeRemaining > 0)
+		setTimeout(countDown, 1000);
+}
+	
+
 // return true if the player's top <= ceiling bottom position
 function collisionWithceiling(){
 
@@ -151,6 +167,7 @@ $(document).ready(function(){
         });
 
     init();
+	
     setTimeout(function() {
         $("#platform1").css("animationPlayState", "running");
         $("#platform2").css("animationPlayState", "running");
@@ -167,7 +184,8 @@ $(document).ready(function(){
         makePlatform("stingPlatform5");
 
     }, 3000);
-
-
+	
+	countDown();
+	
 
 });

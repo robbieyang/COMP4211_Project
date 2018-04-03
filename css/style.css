@@ -153,6 +153,7 @@ span{
 }
 
 
+
 #player {
 		position: absolute;
 		animation-name: player-animation;
@@ -160,6 +161,21 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
 
+}
+
+@keyframes player-move-Y{
+	100%{
+		top : 100;
+	}
+}
+#playermoveY{
+		position: absolute;
+		animation-name: player-move-Y;
+		animation-iteration-count: infinite;
+		animation-fill-mode: forwards;
+		animation-duration: 1s;
+		animation-timing-function: linear;
+		animation-play-state: paused;
 }
 
 

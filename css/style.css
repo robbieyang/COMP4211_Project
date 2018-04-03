@@ -3,11 +3,11 @@
 	display: block;
 	margin-bottom: 0px;
 	padding-top: 0px; 
-	font-family: 'Gloria Hallelujah', cursive;
+	font-family: 'fantasy', fantasy;
 	font-size: 2em;
 	color: white;
-	width: 500px;
-	margin-left: 400px;
+	width: 550px;
+	margin-left: 300px;
 	float: left;
 }
 
@@ -17,7 +17,7 @@
 	border-width: 2px;
 	margin-right: 3px;
 	margin-top: 10px;
-	border-spacing: 10px;
+	border-spacing: 7px;
 	background-color: red;
 	float: left;
 	display: block;
@@ -50,7 +50,7 @@
 		background-color: none;
 	}
 	
-#button { 
+#startButton { 
 		display: inline-block; 
 		padding: 30px 30px;
 		color: white;
@@ -79,6 +79,51 @@
 		background-color: none;
 		border: 3px solid #F0FFFF;
 }
+
+#gameOver { 
+		display: inline-block; 
+		padding: 20px 20px;
+		color: red;
+		position: absolute;
+		top: 17%;
+		left: 28%;
+		vertical-align: middle;
+		font-family: 'papyrus', fantasy;
+		font-weight: bold;
+		text-decoration: none;
+		font-size: 7.5vw;
+		background-color: none;
+}
+	
+#restartButton { 
+		display: inline-block; 
+		padding: 25px 25px;
+		color: white;
+		position: absolute;
+		top: 70%;
+		left: 40%;
+		vertical-align: middle;
+		font-family: 'fantasy', fantasy;
+		text-decoration: none;
+		font-size: 4.5vw;
+		background-color: #1E90FF;
+		border: 3px solid #F0FFFF;
+}	
+	
+#finalScore {
+		display: inline-block; 
+		padding: 20px 20px;
+		color: white;
+		position: absolute;
+		top: 45%;
+		left: 40%;
+		vertical-align: middle;
+		font-family: 'papyrus', fantasy;
+		text-decoration: none;
+		font-size: 4vw;
+		background-color: none;
+}	
+		
 	
 span{
 	float: left;

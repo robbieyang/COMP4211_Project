@@ -32,13 +32,13 @@
 	background-repeat: no-repeat; 
 	background-position: center;
 	position: absolute;
-	display: none;
-	animation-name: fadeIn;
+	display: block;
+	/*animation-name: fadeIn;
 	animation-duration: 2s;
 	animation-timing-function: linear;
 	animation-iteration-count: 1;
 	animation-play-state: paused;
-	animation-fill-mode: none;
+	animation-fill-mode: none;*/
 }
 
 #startGame{

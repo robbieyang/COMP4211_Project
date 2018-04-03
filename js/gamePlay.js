@@ -151,9 +151,9 @@ $(document).ready(function(){
                     if(collisionWithceiling() && !paused){
                         paused = true;
                         player_life -= 1;
-                        if(player_life >= 0){
+                        `if(player_life >= 0){
                             $(".life")[player_life].remove();
-                        }
+                        }`
                     }
                     }, 50);
 					

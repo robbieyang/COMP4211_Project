@@ -4,17 +4,37 @@
 <head>
     <title>COMP4021 Game</title>
     <link rel="stylesheet"  href="css/style.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="js/gamePlay.js"></script>
 	<script>
+	$(document).ready(function() {
+			$("audio")[0].pause();
+			$("audio")[0].currentTime = 0;
+			$("audio")[0].play();
+	});
+	
 	function start(){
-		document.getElementById("startGame").style.display = "none";
-        document.getElementById("main").style.display = "block";
+		<!--document.getElementById("startGame").style.display = "none";-->
+		<!--document.getElementById("main").style.display = "block";-->
+		$("audio")[0].pause();
+		$("audio")[0].currentTime = 0;
+		$("audio")[1].play();
+		
+		$("#startGame").css("animationPlayState", "running");
+		setTimeout(function(){
+			document.getElementById("startGame").style.display = "none";
+		},800);
+		$("#main").show();
+		$("#main").css("animationPlayState", "running");
 	}
+	
 	</script>
-
 </head>
 
 <body>
-
+	<audio><source src="sound/startSound.mp3" type="audio/mpeg"></audio>
+	<audio><source src="sound/button1.mp3" type="audio/mpeg"></audio>
+	
     <!-- the gameStart screen -->
 	<div id="startGame">
 		<svg
@@ -1228,21 +1248,21 @@
 	  </metadata
 	  >
 	</svg>
-		<div id="gameTitle">Stair Game</div>
-		<div id="instruction">
-			<p>Game Rule:</p>
-			<p>1. Control the penguin to move downwards using the arrow key</p>
-			<p>2. The score increases with respect to the number of floors that </p>
-			<p>&nbsp &nbsp the penguin gets down </p>
-			<p>3. The score decreases when the penguin touches the thorn</p>
-			<p>3. The time limit is 3 minutes</p>
-		</div>
-		<div id="button" onclick="start()">START</div>
+			<div id="gameTitle">Stair Game</div>
+			<div id="instruction">
+				<p>Game Rule:</p>
+				<p>1. Control the penguin to move downwards using the arrow key</p>
+				<p>2. The score increases with respect to the number of floors that </p>
+				<p>&nbsp &nbsp the penguin gets down </p>
+				<p>3. The score decreases when the penguin touches the thorn</p>
+				<p>4. The time limit is 3 minutes</p>
+			</div>
+			<div id="startButton" onclick="start()">START</div>
 	</div>
 
     <!-- the game screen -->
         
-	<div style="display: none" id="main">
+	<div id="main">
 			<div>
 				<div class ="text" >
 					<span>Score: &nbsp</span>

@@ -3,11 +3,11 @@
 	display: block;
 	margin-bottom: 0px;
 	padding-top: 0px; 
-	font-family: 'Gloria Hallelujah', cursive;
+	font-family: 'fantasy', fantasy;
 	font-size: 2em;
 	color: white;
-	width: 500px;
-	margin-left: 400px;
+	width: 550px;
+	margin-left: 300px;
 	float: left;
 }
 
@@ -17,7 +17,7 @@
 	border-width: 2px;
 	margin-right: 3px;
 	margin-top: 10px;
-	border-spacing: 10px;
+	border-spacing: 7px;
 	background-color: red;
 	float: left;
 	display: block;
@@ -32,52 +32,118 @@
 	background-repeat: no-repeat; 
 	background-position: center;
 	position: absolute;
+	display: none;
+	animation-name: fadeIn;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	animation-play-state: paused;
+	animation-fill-mode: none;
 }
 
+#startGame{
+	display: block;
+	animation-name: fadeOut;
+	animation-duration: 1.8s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	animation-play-state: paused;
+	animation-fill-mode: forwards;
+}	
+
 #gameTitle { 
-		display: inline-block; 
-		padding: 20px 20px;
-		color: white;
-		position: absolute;
-		top: 15%;
-		left: 26%;
-		vertical-align: middle;
-		font-family: 'papyrus', fantasy;
-		font-weight: bold;
-		text-decoration: none;
-		font-size: 7vw;
-		background-color: none;
-	}
-	
-#button { 
-		display: inline-block; 
-		padding: 30px 30px;
-		color: white;
-		position: absolute;
-		top: 53%;
-		left: 68%;
-		vertical-align: middle;
-		font-family: 'fantasy', fantasy;
-		text-decoration: none;
-		font-size: 5vw;
-		background-color: #1E90FF;
-		border: 3px solid #F0FFFF;
+	display: inline-block; 
+	padding: 20px 20px;
+	color: white;
+	position: absolute;
+	top: 15%;
+	left: 26%;
+	vertical-align: middle;
+	font-family: 'papyrus', fantasy;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 7vw;
+	background-color: none;
+}
+
+#startButton { 
+	display: inline-block; 
+	padding: 30px 30px;
+	color: white;
+	position: absolute;
+	top: 53%;
+	left: 68%;
+	vertical-align: middle;
+	font-family: 'fantasy', fantasy;
+	text-decoration: none;
+	font-size: 5vw;
+	background-color: #1E90FF;
+	border: 3px solid #F0FFFF;
 }	
 	
 #instruction {
-		display: inline-block; 
-		padding: 20px 20px;
-		color: white;
-		position: absolute;
-		top: 50%;
-		left: 8%;
-		vertical-align: middle;
-		font-family: 'papyrus', fantasy;
-		text-decoration: none;
-		font-size: 1.5vw;
-		background-color: none;
-		border: 3px solid #F0FFFF;
+	display: inline-block; 
+	padding: 15px 15px;
+	color: white;
+	position: absolute;
+	top: 47%;
+	left: 8%;
+	vertical-align: middle;
+	font-family: 'papyrus', fantasy;
+	text-decoration: none;
+	font-size: 1.5vw;
+	background-color: none;
+	border: 3px solid #F0FFFF;
 }
+	
+#restartButton { 
+	display: inline-block; 
+	padding: 25px 25px;
+	color: white;
+	position: absolute;
+	top: 70%;
+	left: 40%;
+	vertical-align: middle;
+	font-family: 'fantasy', fantasy;
+	text-decoration: none;
+	font-size: 4.5vw;
+	background-color: #1E90FF;
+	border: 3px solid #F0FFFF;
+}	
+
+#gameover-container {
+	transform: translate(500px,600px);
+}
+
+@keyframes gameover-animation {
+    from { transform: rotate(0deg); font-size: 10px; opacity: 0; }
+    to   { transform: rotate(360deg); font-size: 150px; opacity: 1; }
+}
+
+#gameOver {
+	font-family: 'papyrus', fantasy;
+	animation-name: gameover-animation;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	animation-play-state: paused;
+	animation-fill-mode: none;
+}	
+
+#finalScore {
+	display: inline-block; 
+	padding: 20px 20px;
+	color: white;
+	position: absolute;
+	top: 45%;
+	left: 40%;
+	vertical-align: middle;
+	font-family: 'papyrus', fantasy;
+	text-decoration: none;
+	font-size: 4vw;
+	background-color: none;
+}	
+		
 	
 span{
 	float: left;
@@ -98,6 +164,7 @@ span{
         animation-duration: 5s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        animation-play-state: paused;
 
 }
 @keyframes landscapeY-animation {
@@ -111,6 +178,7 @@ span{
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        animation-play-state: paused;
        
 }
 
@@ -122,14 +190,64 @@ span{
 
 }
 
-.platform {
+#platform1 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+#platform2 {
 
 		animation-name: platform-animation;
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
 
+        animation-play-state: paused;
+
+
 }
+#platform3 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+
+#platform4 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+
+#platform5 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+
 
 @keyframes stingPlatform-animation{
 	from {transform: translateY(0px);}
@@ -137,12 +255,49 @@ span{
 
 }
 
-.stingPlatform {
+#stingPlatform1 {
 
 		animation-name: stingPlatform-animation;
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+#stingPlatform2 {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+#stingPlatform3 {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+#stingPlatform4 {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+#stingPlatform5 {
+
+		animation-name: stingPlatform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
 
 }
 
@@ -160,7 +315,25 @@ span{
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        animation-play-state: paused;
 
+}
+
+@keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
 }
 
 @keyframes player-move-Y{
@@ -178,4 +351,8 @@ span{
 		animation-play-state: paused;
 }
 
+@keyframes fadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
 

@@ -5,10 +5,20 @@
     <title>COMP4021 Game</title>
     <link rel="stylesheet"  href="css/style.css">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="js/gamePlay.js"></script>
 	<script>
+	$(document).ready(function() {
+			$("audio")[0].pause();
+			$("audio")[0].currentTime = 0;
+			$("audio")[0].play();
+	});
+	
 	function start(){
 		<!--document.getElementById("startGame").style.display = "none";-->
 		<!--document.getElementById("main").style.display = "block";-->
+		$("audio")[0].pause();
+		$("audio")[0].currentTime = 0;
+		$("audio")[1].play();
 		
 		$("#startGame").css("animationPlayState", "running");
 		setTimeout(function(){
@@ -16,15 +26,15 @@
 		},800);
 		$("#main").show();
 		$("#main").css("animationPlayState", "running");
-			
 	}
-	
 	
 	</script>
 </head>
 
 <body>
-
+	<audio><source src="sound/startSound.mp3" type="audio/mpeg"></audio>
+	<audio><source src="sound/button1.mp3" type="audio/mpeg"></audio>
+	
     <!-- the gameStart screen -->
 	<div id="startGame">
 		<svg

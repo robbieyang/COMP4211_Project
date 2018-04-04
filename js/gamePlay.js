@@ -54,6 +54,24 @@ function startAnimation(){
     //$("#playermoveY").css("animationPlayState", "running");
 
 }
+
+function stopAnimation(){
+    $(".landscape").css("animationPlayState", "paused");
+    $("#landscape").css("animationPlayState", "paused");
+    $("#platform1").css("animationPlayState", "paused");
+    $("#platform2").css("animationPlayState", "paused");
+    $("#platform3").css("animationPlayState", "paused");
+    $("#platform4").css("animationPlayState", "paused");
+    $("#platform5").css("animationPlayState", "paused");
+    $("#stingPlatform1").css("animationPlayState", "paused");
+    $("#stingPlatform2").css("animationPlayState", "paused");
+    $("#stingPlatform3").css("animationPlayState", "paused");
+    $("#stingPlatform4").css("animationPlayState", "paused");
+    $("#stingPlatform5").css("animationPlayState", "paused");
+    $("#player").css("animationPlayState", "paused");
+    //$("#playermoveY").css("animationPlayState", "running");
+
+}
 // return true if the player's top <= ceiling bottom position
 
 
@@ -150,17 +168,16 @@ $(document).ready(function(){
         return false;
 
     }
-    var checkCeiling = setInterval(function(){
+    /*var checkCeiling = setInterval(function(){
                     var paused = false;
                     if(collisionWithceiling() && !paused){
                         paused = true;
                         player_life -= 1;
-                        if(player_life >= 0){
+                        `if(player_life >= 0){
                             $(".life")[player_life].remove();
-                            //moveDownward();
-                        }
+                        }`
                     }
-                    }, 50);
+                }, 50);*/
 
     $(document).on("keydown", function(e){
         switch(e.which){

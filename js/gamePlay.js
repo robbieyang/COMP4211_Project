@@ -1,5 +1,6 @@
 
 var player_life = 10;
+var add = false;
 function move(n){
     $("#playermove").css("transform", "translateX(" + n + "px)")
 }
@@ -221,7 +222,6 @@ function checkOnPlatform(){
     var timeIn = false;
     for (var i = 0; i <platforms.length; i++) {
         var id =platforms[i].getAttribute("id");
-        console.log(id);
         var platform_top = $("#"+id+"svg")[0].getBoundingClientRect().top;
         //console.log("player: "+playerY+"  platform: "+ platform_top);
         if(platform_top<637){
@@ -247,15 +247,25 @@ function checkOnPlatform(){
                         timeIn = false;
                     }, 2000);
                 }
-        
+        if(id !="stingPlatform" && add){
+            addScore();
+            add= false;
+        }
     }else{
         moveDownward();
         $("#player").css("animationPlayState", "paused");
+        add = true;
         
           
     }
     requestAnimationFrame(checkOnPlatform);
 
+}
+
+function addScore(){
+    var score = document.getElementById("score").innerHTML;
+    score =  parseInt(score);
+    document.getElementById("score").innerHTML = score+1;
 }
 
 function init(){
@@ -323,19 +333,19 @@ $(document).ready(function(){
             case key.LEFT:
                 r -= 20;
                 move(r);
-                if (collisionWithPlatforms(".platform") == false){
+                /*if (collisionWithPlatforms(".platform") == false){
                     console.log("here");
                     n += 5;
                     moveDownward();
 
-                }
+                }*/
                 break;
             case key.RIGHT:
                 r += 20;
                 move(r);
-                if (collisionWithPlatforms(".platform") == false){
+                /*if (collisionWithPlatforms(".platform") == false){
                     console.log("hey");
-                }
+                }*/
                 break;
         }
     });

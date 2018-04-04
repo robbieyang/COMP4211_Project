@@ -2,7 +2,7 @@
 .text {
 	display: block;
 	margin-bottom: 0px;
-	padding-top: 0px; 
+	padding-top: 0px;
 	font-family: 'fantasy', fantasy;
 	font-size: 2em;
 	color: white;
@@ -27,18 +27,18 @@
 
 
 #main{
-	height: 700px; 
-	background-image: url('../resources/brick.svg'); 
-	background-repeat: no-repeat; 
+	height: 700px;
+	background-image: url('../resources/brick.svg');
+	background-repeat: no-repeat;
 	background-position: center;
 	position: absolute;
-	display: none;
-	animation-name: fadeIn;
+	display: block;
+	/*animation-name: fadeIn;
 	animation-duration: 2s;
 	animation-timing-function: linear;
 	animation-iteration-count: 1;
 	animation-play-state: paused;
-	animation-fill-mode: none;
+	animation-fill-mode: none;*/
 }
 
 #startGame{
@@ -49,10 +49,10 @@
 	animation-iteration-count: 1;
 	animation-play-state: paused;
 	animation-fill-mode: forwards;
-}	
+}
 
-#gameTitle { 
-	display: inline-block; 
+#gameTitle {
+	display: inline-block;
 	padding: 20px 20px;
 	color: white;
 	position: absolute;
@@ -66,8 +66,8 @@
 	background-color: none;
 }
 
-#startButton { 
-	display: inline-block; 
+#startButton {
+	display: inline-block;
 	padding: 30px 30px;
 	color: white;
 	position: absolute;
@@ -79,10 +79,10 @@
 	font-size: 5vw;
 	background-color: #1E90FF;
 	border: 3px solid #F0FFFF;
-}	
-	
+}
+
 #instruction {
-	display: inline-block; 
+	display: inline-block;
 	padding: 15px 15px;
 	color: white;
 	position: absolute;
@@ -95,9 +95,9 @@
 	background-color: none;
 	border: 3px solid #F0FFFF;
 }
-	
-#restartButton { 
-	display: inline-block; 
+
+#restartButton {
+	display: inline-block;
 	padding: 25px 25px;
 	color: white;
 	position: absolute;
@@ -109,7 +109,7 @@
 	font-size: 4.5vw;
 	background-color: #1E90FF;
 	border: 3px solid #F0FFFF;
-}	
+}
 
 #gameover-container {
 	transform: translate(500px,600px);
@@ -128,10 +128,10 @@
 	animation-iteration-count: 1;
 	animation-play-state: paused;
 	animation-fill-mode: none;
-}	
+}
 
 #finalScore {
-	display: inline-block; 
+	display: inline-block;
 	padding: 20px 20px;
 	color: white;
 	position: absolute;
@@ -142,9 +142,9 @@
 	text-decoration: none;
 	font-size: 4vw;
 	background-color: none;
-}	
-		
-	
+}
+
+
 span{
 	float: left;
 	display: block;
@@ -156,7 +156,7 @@ span{
     0% { transform: translateX(100px); }
     50% { transform: translateX(-100px); }
     100% {transform: translateX(100px); }
-    
+
 }
 
 .landscape {
@@ -170,7 +170,7 @@ span{
 @keyframes landscapeY-animation {
    from {transform: translateY(0px);}
 	to {transform: translateY(-1000px);}
-    
+
 }
 
 #landscape {
@@ -179,7 +179,7 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-       
+
 }
 
 
@@ -337,8 +337,11 @@ span{
 }
 
 @keyframes player-move-Y{
-	100%{
-		top : 100;
+	from{
+		transform: translateY(0px);
+	}
+	to {
+		transform: translateY(1000px);
 	}
 }
 #playermoveY{
@@ -346,7 +349,7 @@ span{
 		animation-name: player-move-Y;
 		animation-iteration-count: infinite;
 		animation-fill-mode: forwards;
-		animation-duration: 1s;
+		animation-duration: 20s;
 		animation-timing-function: linear;
 		animation-play-state: paused;
 }
@@ -355,4 +358,3 @@ span{
 	0% {opacity: 1;}
 	100% {opacity: 0;}
 }
-

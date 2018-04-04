@@ -5,7 +5,8 @@ function move(n){
 }
 function moveDownward(){
     $("#playermoveY").css("animationPlayState", "running");
-    
+    console.log("nope!")
+
 }
 //return true if the player's bottom <= platform's top
 function collisionWithPlatforms(nameOfObject){
@@ -21,10 +22,10 @@ function collisionWithPlatforms(nameOfObject){
     var platform_left = platform.left;
     var platform_right = platform.right;
 
-
-    if(Math.floor(player_bottom - platform_top) <= 10 || Math.floor(player_bottom - platform_top) >= 0){
-
-        if(player_right - platform_left >= 8 && platform_right - player_left >= 8){
+    console.log(player_bottom - platform_top);
+    if(Math.floor(platform_top - player_bottom) == -12){
+        if(player_right > platform_left && player_left < platform_right){
+            console.log(platform_top - player_bottom + nameOfObject);
             return true;
         }
 
@@ -50,11 +51,13 @@ function startAnimation(){
     $("#stingPlatform4").css("animationPlayState", "running");
     $("#stingPlatform5").css("animationPlayState", "running");
     $("#player").css("animationPlayState", "running");
-    $("#playermoveY").css("animationPlayState", "running");
+    //$("#playermoveY").css("animationPlayState", "running");
 
 }
 // return true if the player's top <= ceiling bottom position
-var timeRemaining = 15;
+
+
+var timeRemaining = 181;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
 	var minutes = Math.floor(timeRemaining/60);
@@ -63,7 +66,7 @@ function countDown() {
 		seconds= "00";
 	} else if (seconds < 10){
 		seconds = "0"+seconds;
-	}	
+	}
 	document.getElementById("time").innerHTML = minutes+":"+seconds;
 	if (timeRemaining > 0)
 		setTimeout(countDown, 1000);
@@ -75,23 +78,16 @@ function countDown() {
 		//document.getElementById("gameOver").style.display = "block";
 	}
 }
-	
-
-// return true if the player's top <= ceiling bottom position
-function collisionWithceiling(){
-
-}
-
 
 function checkGameOver(){
-	
-	
-	
-	
+
+
+
+
 	//Game Over wordings will be shown with animation
 	$("#gameOver").show();
 	$("#gameOver").css("animationPlayState", "running");
-	
+
 }
 
 
@@ -127,10 +123,9 @@ function init(){
     document.getElementById("stingPlatform1"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
     document.getElementById("stingPlatform2"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
 
-
 }
+
 $(document).ready(function(){
-    init();
     startAnimation();
     var r = 0;
     var n = 0;
@@ -140,26 +135,20 @@ $(document).ready(function(){
         UP: 38
     };
 
-    var obj = {
-        PLATFORM: ".platform",
-        STINGPLATFORM: ".stingPlatform",
-        LANDSCAPE: "#lanscape"
-    };
-
     function collisionWithceiling(){
         var player = $("svg #player")[0].getBoundingClientRect();
         var player_top = player.top;
-    
+
         var sting = $("svg #sting")[0].getBoundingClientRect();
         var sting_bottom = sting.bottom;
 
-    
+
         if (Math.floor(player_top - sting_bottom) <= 2){
             return true;
         }
 
         return false;
-    
+
     }
     var checkCeiling = setInterval(function(){
                     var paused = false;
@@ -168,9 +157,11 @@ $(document).ready(function(){
                         player_life -= 1;
                         if(player_life >= 0){
                             $(".life")[player_life].remove();
+                            //moveDownward();
                         }
                     }
                     }, 50);
+
     $(document).on("keydown", function(e){
         switch(e.which){
             case key.LEFT:
@@ -178,35 +169,62 @@ $(document).ready(function(){
                 move(r);
                 if (collisionWithPlatforms(".platform") == false){
                     console.log("here");
-                    while(collisionWithPlatforms(obj.LANDSCAPE) == false &&
-                    collisionWithPlatforms(obj.PLATFORM) == false &&
-                    collisionWithPlatforms(obj.STINGPLATFORM) == false){
-                        console.log("aa");
-                        n += 5;
-                        moveDownward(n);
-                    }
-                    
+                    n += 5;
+                    moveDownward();
+
                 }
                 break;
             case key.RIGHT:
                 r += 10;
                 move(r);
                 if (collisionWithPlatforms(".platform") == false){
-                    moveDownward();
-                    $("#player").css("animationPlayState", "paused");
-
                     console.log("hey");
-                    if(collisionWithPlatforms(".landscape") == true ||
-                    collisionWithPlatforms(".platform") == true ||
-                    collisionWithPlatforms(".stingPlatform") == true){
-                        $("#playermoveY").css("animationPlayState", "paused");
-                    }
-                    
                 }
                 break;
         }
     });
-	
+
+    var checkCollision = setInterval(function(){
+        var timeIn = false;
+        if(!collisionWithPlatforms("#platform1")&&
+        !collisionWithPlatforms("#platform2") &&
+        !collisionWithPlatforms("#platform3") &&
+        !collisionWithPlatforms("#platform4") &&
+        !collisionWithPlatforms("#platform5") &&
+        !collisionWithPlatforms("#stingPlatform1") &&
+        !collisionWithPlatforms("#stingPlatform2") &&
+        !collisionWithPlatforms("#stingPlatform3") &&
+        !collisionWithPlatforms("#stingPlatform4") &&
+        !collisionWithPlatforms("#stingPlatform5")){
+            moveDownward();
+            $("#player").css("animationPlayState", "paused");
+        }
+
+        else{
+            $("#playermoveY").css("animationPlayState", "paused");
+            $("#player").css("animationPlayState", "running");
+            if(collisionWithPlatforms("#stingPlatform1") ||
+            collisionWithPlatforms("#stingPlatform2") ||
+            collisionWithPlatforms("#stingPlatform3") ||
+            collisionWithPlatforms("#stingPlatform4") ||
+            collisionWithPlatforms("#stingPlatform5")){
+                player_life -= 1;
+                timeIn = true;
+                if(player_life >= 0 && !timeIn){
+                    $(".life")[player_life].remove();
+                    setTimeout(function(){
+                        timeIn = false;
+                    }, 2000);
+                }
+            }
+        }
+
+
+
+
+
+    },1);
+
     $("#platform1").on("animationend", function() {
             // You need to stop the animation here
             $("#platform1").css("display","none");
@@ -272,25 +290,10 @@ $(document).ready(function(){
         });
 
 	init();
-	
-    setTimeout(function() {
-        $("#platform1").css("animationPlayState", "running");
-        $("#platform2").css("animationPlayState", "running");
-        $("#platform3").css("animationPlayState", "running");
-        makePlatform("platform4");
-        makePlatform("platform5");
-        $("#player").css("animationPlayState", "running");
-        $(".landscape").css("animationPlayState", "running");
-        $("#landscape").css("animationPlayState", "running");
-        $("#stingPlatform1").css("animationPlayState", "running");
-        $("#stingPlatform2").css("animationPlayState", "running");
-        makePlatform("stingPlatform3");
-        makePlatform("stingPlatform4");
-        makePlatform("stingPlatform5");
 
-    }, 2000);
-	
+
+
 	countDown();
-	
+
 
 });

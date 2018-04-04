@@ -32,13 +32,13 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	position: absolute;
-	/*display: block;
+	display: block;
 	animation-name: fadeIn;
-	animation-duration: 2s;
+	animation-duration: 1.8s;
 	animation-timing-function: linear;
 	animation-iteration-count: 1;
 	animation-play-state: paused;
-	animation-fill-mode: none;*/
+	animation-fill-mode: none;
 }
 
 #startGame{
@@ -79,6 +79,13 @@
 	font-size: 5vw;
 	background-color: #1E90FF;
 	border: 3px solid #F0FFFF;
+	transition: transform 0.3s ease-out; 
+}
+
+#startButton:hover {
+	transform:scale(1.8);
+	color: red;	
+	background-color:#87CEFA;
 }
 
 #instruction {

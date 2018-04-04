@@ -292,6 +292,11 @@ function init(){
 }
 
 $(document).ready(function(){
+	$("audio")[0].pause();
+	$("audio")[0].currentTime = 0;
+	$("audio")[0].loop = true;
+	$("audio")[0].play();
+	$("#main").css("animationPlayState", "running");
     startAnimation();
     var r = 0;
     var n = 0;

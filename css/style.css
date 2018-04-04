@@ -167,12 +167,21 @@ span{
 
 
 
-@keyframes landscape-animation {
+@keyframes landscape1-animation {
     0% { transform: translateX(100px); }
     50% { transform: translateX(-100px); }
     100% {transform: translateX(100px); }
 
 }
+
+@keyframes landscape2-animation {
+    0% { transform: translateX(-100px); }
+    50% { transform: translateX(100px); }
+    100% {transform: translateX(-100px); }
+
+}
+
+
 
 
 @keyframes landscapeY-animation {
@@ -195,7 +204,7 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-        animation-delay: 1s;
+
 
 }
 #landscape3Y {
@@ -204,7 +213,7 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-         animation-delay: 2s;
+     
 
 }
 #landscape4Y {
@@ -213,7 +222,7 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-         animation-delay: 3s;
+     
 
 }
 
@@ -223,38 +232,38 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-        animation-delay: 4s;
+   
 
 }
 #landscape1{
-	  	animation-name: landscape-animation;
+	  	animation-name: landscape1-animation;
         animation-duration: 5s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-        animation-play-state: paused;
+    
 }
 #landscape2{
-	  	animation-name: landscape-animation;
+	  	animation-name: landscape2-animation;
         animation-duration: 5s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-		animation-delay: 1s;
+
 }
 
 #landscape3{
-		animation-name: landscape-animation;
-        animation-duration: 5s;
+		animation-name: landscape1-animation;
+        animation-duration: 4s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
 
-	animation-delay: 2s;
+	
 }
 
 #landscape4{
-	animation-name: landscape-animation;
-        animation-duration: 5s;
+	animation-name: landscape2-animation;
+        animation-duration: 6s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
@@ -262,13 +271,13 @@ span{
 	animation-delay: 3s;
 }
 #landscape5{
-	animation-name: landscape-animation;
-        animation-duration: 5s;
+	animation-name: landscape1-animation;
+        animation-duration: 3s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
 
-	animation-delay: 4s;
+
 }
 
 
@@ -286,6 +295,7 @@ span{
         animation-timing-function: linear;
 
         animation-play-state: paused;
+
 
 
 }
@@ -320,11 +330,44 @@ span{
         animation-timing-function: linear;
 
         animation-play-state: paused;
+ 
+}
+
+#platform5 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+#platform6 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+#platform7 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
 
 
 }
 
-#platform5 {
+#platform8 {
 
 		animation-name: platform-animation;
         animation-duration: 15s;

@@ -38,8 +38,6 @@ function collisionWithPlatforms(nameOfObject){
 }
 
 function startAnimation(){
-    $(".landscape").css("animationPlayState", "running");
-    $("#landscape").css("animationPlayState", "running");
     $("#platform1").css("animationPlayState", "running");
     $("#platform2").css("animationPlayState", "running");
     $("#platform3").css("animationPlayState", "running");
@@ -52,12 +50,13 @@ function startAnimation(){
     $("#stingPlatform5").css("animationPlayState", "running");
     $("#player").css("animationPlayState", "running");
     //$("#playermoveY").css("animationPlayState", "running");
+    $("#landscape1").css("animationPlayState", "running");
+    $("#landscape1Y").css("animationPlayState", "running");
+    
 
 }
 
 function stopAnimation(){
-    $(".landscape").css("animationPlayState", "paused");
-    $("#landscape").css("animationPlayState", "paused");
     $("#platform1").css("animationPlayState", "paused");
     $("#platform2").css("animationPlayState", "paused");
     $("#platform3").css("animationPlayState", "paused");
@@ -70,6 +69,13 @@ function stopAnimation(){
     $("#stingPlatform5").css("animationPlayState", "paused");
     $("#player").css("animationPlayState", "paused");
     //$("#playermoveY").css("animationPlayState", "running");
+
+    var landscape = document.getElementsByClassName("landscape");
+    for (var i = 0;i<landscape.length; i++) {
+        var k=i+1;
+        $("#landscape"+k).css("animationPlayState", "paused");
+        $("#landscape"+k+"Y").css("animationPlayState", "paused");
+    }
 
 }
 // return true if the player's top <= ceiling bottom position
@@ -126,6 +132,15 @@ function makePlatform(id) {
             $(newid).css("animationPlayState", "running");
         }, Math.floor((Math.random() * 40000)));
 
+    }else if(id.includes("landscape")){
+        document.getElementById(id+"svg").setAttribute("x", Math.floor((Math.random() * 600))+100 );
+        document.getElementById(id+"svg").setAttribute("y", 720);
+        setTimeout(function() {
+            $(newid).css("animationPlayState", "running");
+            $(newid+"Y").css("animationPlayState", "running");
+
+        }, Math.floor((Math.random() * 40000)));
+
     }
 
 
@@ -140,6 +155,13 @@ function init(){
     document.getElementById("platform3"+"svg").setAttribute("y",  Math.floor((Math.random() * 2000)+500));
     document.getElementById("stingPlatform1"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
     document.getElementById("stingPlatform2"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
+    document.getElementById("landscape1"+"svg").setAttribute("x",Math.floor(Math.random()*600)+100);
+    document.getElementById("landscape1"+"svg").setAttribute("y",Math.floor(Math.random()*700)+100);
+    var landscape = document.getElementsByClassName("landscape");
+    for (var i = 1;i<landscape.length; i++) {
+        var k=i+1;
+        makePlatform("landscape"+k);
+    }
 
 }
 
@@ -305,7 +327,38 @@ $(document).ready(function(){
             makePlatform("stingPlatform5");
 
         });
+       $("#landscape1Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape1Y").css("animation-play-state","paused");
+            makePlatform("landscape1");
 
+        });
+       $("#landscape2Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape2Y").css("animation-play-state","paused");
+            makePlatform("landscape2");
+
+        });
+       $("#landscape3Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape3Y").css("animation-play-state","paused");
+            makePlatform("landscape");
+
+        });
+       $("#landscape4Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape4Y").css("animation-play-state","paused");
+            makePlatform("landscape4");
+
+        });
+       $("#landscape5Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape5Y").css("animation-play-state","paused");
+            makePlatform("landscape5");
+
+        });
+
+    startAnimation();
 	init();
 
 

@@ -265,7 +265,8 @@ function checkOnPlatform(){
 function addScore(){
     var score = document.getElementById("score").innerHTML;
     score =  parseInt(score);
-    document.getElementById("score").innerHTML = score+1;
+    score+=1
+    document.getElementById("score").innerHTML = score + " &nbsp &nbsp";
 }
 
 function init(){

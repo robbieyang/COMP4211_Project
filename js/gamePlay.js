@@ -156,7 +156,7 @@ function makePlatform() {
         id = randomGenerate();
         status =  document.getElementById(id).style.animationPlayState;
     }
-    console.log(id);
+   // console.log(id);
     if(id.includes("platform")){
         document.getElementById(id+"svg").setAttribute("x",  Math.floor((Math.random() * 1000)));
         document.getElementById(id+"svg").setAttribute("y",2500);
@@ -210,6 +210,52 @@ function randomGenerate(){
 
     }
     return id+num;
+}
+
+function checkOnPlatform(){
+    var platforms = document.getElementsByClassName("stand");
+
+    var playerX = $("#playersvg")[0].getBoundingClientRect().x;
+    var playerY = $("#playersvg")[0].getBoundingClientRect().bottom;
+    var on = false;
+    var timeIn = false;
+    for (var i = 0; i <platforms.length; i++) {
+        var id =platforms[i].getAttribute("id");
+        console.log(id);
+        var platform_top = $("#"+id+"svg")[0].getBoundingClientRect().top;
+        //console.log("player: "+playerY+"  platform: "+ platform_top);
+        if(platform_top<637){
+            var idsvg = document.getElementById(id+"svg");
+            var platform_left = $("#"+id+"svg")[0].getBoundingClientRect().left;
+            var platform_right = $("#"+id+"svg")[0].getBoundingClientRect().right;
+            var platform_bottom= $("#"+id+"svg")[0].getBoundingClientRect().bottom;
+            if(playerX>platform_left && playerX < platform_right && playerY >platform_top && playerY < platform_bottom){
+                //console.log("onPlatform");
+                on = true;
+                break;
+            }
+        }
+    }
+    if(on){
+        $("#playermoveY").css("animationPlayState", "paused");
+        $("#player").css("animationPlayState", "running");
+        player_life -= 1;
+                timeIn = true;
+                if(player_life >= 0 && !timeIn){
+                    $(".life")[player_life].remove();
+                    setTimeout(function(){
+                        timeIn = false;
+                    }, 2000);
+                }
+        
+    }else{
+        moveDownward();
+        $("#player").css("animationPlayState", "paused");
+        
+          
+    }
+    requestAnimationFrame(checkOnPlatform);
+
 }
 
 function init(){
@@ -275,7 +321,7 @@ $(document).ready(function(){
     $(document).on("keydown", function(e){
         switch(e.which){
             case key.LEFT:
-                r -= 10;
+                r -= 20;
                 move(r);
                 if (collisionWithPlatforms(".platform") == false){
                     console.log("here");
@@ -285,7 +331,7 @@ $(document).ready(function(){
                 }
                 break;
             case key.RIGHT:
-                r += 10;
+                r += 20;
                 move(r);
                 if (collisionWithPlatforms(".platform") == false){
                     console.log("hey");
@@ -294,7 +340,7 @@ $(document).ready(function(){
         }
     });
 
-    var checkCollision = setInterval(function(){
+    /*var checkCollision = setInterval(function(){
         var timeIn = false;
         if(!collisionWithPlatforms("#platform1")&&
         !collisionWithPlatforms("#platform2") &&
@@ -333,7 +379,7 @@ $(document).ready(function(){
 
 
 
-    },1);
+    },1);*/
 
     $("#platform1").on("animationend", function() {
             // You need to stop the animation here
@@ -467,7 +513,7 @@ $(document).ready(function(){
             // You need to stop the animation here
             $("#landscape5Y").css("animation-play-state","paused");
            // makePlatform("landscape5");
-            document.getElementById("landscape5svg").setAttribute("y", 720);
+            document.getElementById("landscape5svg").setAttribute("y", 1020);
 
         });
 
@@ -475,7 +521,7 @@ $(document).ready(function(){
     setTimeout(function(){
                         requestAnimationFrame( makePlatform);
                     }, 2000);
-    
+    requestAnimationFrame(checkOnPlatform);
 	init();
 
 

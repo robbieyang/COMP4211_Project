@@ -427,6 +427,8 @@ function addScore(){
 }
 
 function lifeDeduct(n){
+    $("progress").fadeOut(100);
+    $("progress").fadeIn(100);
     var progress = document.getElementById("health");
     player_life -= n;
 

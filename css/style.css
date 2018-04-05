@@ -26,7 +26,9 @@ progress[value]{
 	height: 30px;
 }
 
-progress::-webkit-progress-value { background: red; }
+progress::-webkit-progress-value {
+	transition: width 0.5s;
+	background: red; }
 
 .life{
 	border-style: solid;

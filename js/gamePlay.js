@@ -1,10 +1,24 @@
 
 var player_life = 10;
+var add = false;
+var randomGen;
+var randomGenPlatform;
+var makePlatformRequest;
+var makePlatformRequest1;
+var checkPlatformRequest;
+var checkPlatformRequest1;
+
+var previousCollision = "";
+
+var counter = 0;
+var lastCollideCeilling = false;
+
 function move(n){
     $("#playermove").css("transform", "translateX(" + n + "px)")
 }
 function moveDownward(){
     $("#playermoveY").css("animationPlayState", "running");
+    //console.log("nope!")
 
 }
 //return true if the player's bottom <= platform's top
@@ -21,9 +35,10 @@ function collisionWithPlatforms(nameOfObject){
     var platform_left = platform.left;
     var platform_right = platform.right;
 
+    //console.log(player_bottom - platform_top);
     if(Math.floor(platform_top - player_bottom) == -12){
-        if(Math.floor(player_right) > Math.floor(platform_left) && Math.floor(player_left) < Math.floor(platform_right)){
-            console.log("coll" + nameOfObject);
+        if(player_right > platform_left && player_left < platform_right){
+            //console.log(platform_top - player_bottom + nameOfObject);
             return true;
         }
 
@@ -35,40 +50,27 @@ function collisionWithPlatforms(nameOfObject){
 
 }
 
-function checkCollisions(){
-    return (collisionWithPlatforms("#platform1")||
-    collisionWithPlatforms("#platform2") ||
-    collisionWithPlatforms("#platform3") ||
-    collisionWithPlatforms("#platform4") ||
-    collisionWithPlatforms("#platform5") ||
-    collisionWithPlatforms("#stingPlatform1") ||
-    collisionWithPlatforms("#stingPlatform2") ||
-    collisionWithPlatforms("#stingPlatform3") ||
-    collisionWithPlatforms("#stingPlatform4") ||
-    collisionWithPlatforms("#stingPlatform5"));
-}
 
 function startAnimation(){
-    $(".landscape").css("animationPlayState", "running");
-    $("#landscape").css("animationPlayState", "running");
     $("#platform1").css("animationPlayState", "running");
     $("#platform2").css("animationPlayState", "running");
     $("#platform3").css("animationPlayState", "running");
-    $("#platform4").css("animationPlayState", "running");
-    $("#platform5").css("animationPlayState", "running");
+    /*$("#platform4").css("animationPlayState", "running");
+    $("#platform5").css("animationPlayState", "running");*/
     $("#stingPlatform1").css("animationPlayState", "running");
-    $("#stingPlatform2").css("animationPlayState", "running");
-    $("#stingPlatform3").css("animationPlayState", "running");
+   // $("#stingPlatform2").css("animationPlayState", "running");
+    /*$("#stingPlatform3").css("animationPlayState", "running");
     $("#stingPlatform4").css("animationPlayState", "running");
-    $("#stingPlatform5").css("animationPlayState", "running");
+    $("#stingPlatform5").css("animationPlayState", "running");*/
     $("#player").css("animationPlayState", "running");
     //$("#playermoveY").css("animationPlayState", "running");
+    $("#landscape1").css("animationPlayState", "running");
+    $("#landscape1Y").css("animationPlayState", "running");
+
 
 }
 
 function stopAnimation(){
-    $(".landscape").css("animationPlayState", "paused");
-    $("#landscape").css("animationPlayState", "paused");
     $("#platform1").css("animationPlayState", "paused");
     $("#platform2").css("animationPlayState", "paused");
     $("#platform3").css("animationPlayState", "paused");
@@ -79,14 +81,23 @@ function stopAnimation(){
     $("#stingPlatform3").css("animationPlayState", "paused");
     $("#stingPlatform4").css("animationPlayState", "paused");
     $("#stingPlatform5").css("animationPlayState", "paused");
+	console.log("Player Stop");
     $("#player").css("animationPlayState", "paused");
     //$("#playermoveY").css("animationPlayState", "running");
+
+    var landscape = document.getElementsByClassName("landscape");
+    for (var i = 0;i<landscape.length; i++) {
+        var k=i+1;
+		$("#landscape"+k+"Y").css("animationPlayState", "paused");
+        $("#landscape"+k).css("animationPlayState", "paused");
+
+    }
 
 }
 // return true if the player's top <= ceiling bottom position
 
 
-var timeRemaining = 181;
+var timeRemaining = 10;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
 	var minutes = Math.floor(timeRemaining/60);
@@ -100,9 +111,18 @@ function countDown() {
 	if (timeRemaining > 0)
 		setTimeout(countDown, 1000);
 	if (minutes =="0" && seconds=="00") {
-		console.log("Time's up");
+		cancelAnimationFrame(checkPlatformRequest);
+		cancelAnimationFrame(checkPlatformRequest1);
+		stopAnimation();
+		clearTimeout(randomGen);
+		clearTimeout(randomGenPlatform);
+		cancelAnimationFrame(makePlatformRequest);
+		cancelAnimationFrame(makePlatformRequest1);
+
+		console.log("Game Over");
 		$("#gameOver").show();
 		$("#gameOver").css("animationPlayState", "running");
+
 		//Link the gameOver scene
 		//document.getElementById("gameOver").style.display = "block";
 	}
@@ -113,48 +133,279 @@ function checkGameOver(){
 
 
 
+
 	//Game Over wordings will be shown with animation
 	$("#gameOver").show();
 	$("#gameOver").css("animationPlayState", "running");
 
+	/**else{
+        requestAnimationFrame(checkGameover);
+	}	**/
+
 }
 
 
-function makePlatform(id) {
+
+/*function makePlatform(id) {
     console.log("id "+id);
     var tempId = id+"svg";
     var newid="#"+id;
     if(id.includes("platform")){
-        document.getElementById(id+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
+        document.getElementById(id+"svg").setAttribute("x",  Math.floor((Math.random() * 1000)));
         document.getElementById(id+"svg").setAttribute("y", 2500);
-        setTimeout(function() {
+
             $(newid).css("animationPlayState", "running");
-        }, Math.floor((Math.random() * 10000)+2000));
+
     }else if(id.includes("stingPlatform")){
         document.getElementById(id+"svg").setAttribute("x", Math.floor((Math.random() * 770)) );
         document.getElementById(id+"svg").setAttribute("y", 1000);
-        setTimeout(function() {
+       // setTimeout(function() {
             $(newid).css("animationPlayState", "running");
-        }, Math.floor((Math.random() * 40000)));
+       // }, Math.floor((Math.random() * 40000)));
+
+    }else if(id.includes("landscape")){
+        document.getElementById(id+"svg").setAttribute("x", Math.floor((Math.random() * 600))+100 );
+        document.getElementById(id+"svg").setAttribute("y", 720);
+       // setTimeout(function() {
+            $(newid).css("animationPlayState", "running");
+            $(newid+"Y").css("animationPlayState", "running");
+
+      //  }, Math.floor((Math.random() * 40000)));
 
     }
 
 
+}*/
+
+function gameOver(){
+    cancelAnimationFrame(checkPlatformRequest);
+    cancelAnimationFrame(checkPlatformRequest1);
+    stopAnimation();
+    clearTimeout(randomGen);
+    clearTimeout(randomGenPlatform);
+    cancelAnimationFrame(makePlatformRequest);
+    cancelAnimationFrame(makePlatformRequest1);
+
+    console.log("Game Over");
+    $("#gameOver").show();
+    $("#gameOver").css("animationPlayState", "running");
+
+}
+function makePlatform() {
+	console.log ("platform generated");
+    var id= randomGenerate();
+    var tempId = id+"svg";
+    var newid="#"+id;
+    var status =  document.getElementById(id).style.animationPlayState;
+    while (status.includes("running")){
+        id = randomGenerate();
+        status =  document.getElementById(id).style.animationPlayState;
+    }
+   // console.log(id);
+    if(id.includes("platform")){
+        document.getElementById(id+"svg").setAttribute("x",  Math.floor((Math.random() * 1000)));
+        document.getElementById(id+"svg").setAttribute("y",2500);
+
+            $(newid).css("animationPlayState", "running");
+
+    }else if(id.includes("stingPlatform")){
+        document.getElementById(id+"svg").setAttribute("x", Math.floor((Math.random() * 770)) );
+        document.getElementById(id+"svg").setAttribute("y", 1000);
+       // setTimeout(function() {
+            $(newid).css("animationPlayState", "running");
+       // }, Math.floor((Math.random() * 40000)));
+
+    }else if(id.includes("landscape")){
+        document.getElementById(id+"svg").setAttribute("x", Math.floor((Math.random() * 600))+100 );
+        document.getElementById(id+"svg").setAttribute("y", 720);
+       // setTimeout(function() {
+            $(newid).css("animationPlayState", "running");
+            $(newid+"Y").css("animationPlayState", "running");
+
+      //  }, Math.floor((Math.random() * 40000)));
+
+    }
+    var waitTime = (Math.floor((Math.random() * 30))+15)*100;
+
+    randomGenPlatform = setTimeout(function() {
+            makePlatformRequest1 = requestAnimationFrame(makePlatform);
+
+    }, waitTime);
+
+
+
+}
+
+function randomGenerate(){
+    var temp = Math.floor(Math.random()*3)+1;
+    var num = Math.floor(Math.random()*5)+1;
+    var id= "";
+    if (num >5){
+        temp=1;
+    }
+    switch (temp){
+        case 1:
+            id="platform";
+            break;
+        case 2:
+            id="landscape";
+            break;
+        case 3:
+            id="stingPlatform";
+
+    }
+    return id+num;
+}
+
+function collisionWithceiling(){
+    var player = $("svg #player")[0].getBoundingClientRect();
+    var player_top = player.top;
+
+    var sting = $("svg #sting")[0].getBoundingClientRect();
+    var sting_bottom = sting.bottom;
+
+    console.log(player_top - sting_bottom);
+
+    if (player_top - sting_bottom < 2){
+        return true;
+    }
+
+    return false;
+
+}
+
+function checkOnPlatform(){
+	console.log("check on platform");
+    var platforms = document.getElementsByClassName("stand");
+
+    var playerX = $("#playersvg")[0].getBoundingClientRect().x;
+    var playerY = $("#playersvg")[0].getBoundingClientRect().bottom;
+    var on = false;
+    var timeIn = false;
+    //$("#player").css("animationPlayState", "running");
+    for (var i = 0; i <platforms.length; i++) {
+        var id =platforms[i].getAttribute("id");
+        var platform_top = $("#"+id+"svg")[0].getBoundingClientRect().top;
+        //console.log("player: "+playerY+"  platform: "+ platform_top);
+        if(platform_top<637){
+            var idsvg = document.getElementById(id+"svg");
+            var platform_left = $("#"+id+"svg")[0].getBoundingClientRect().left;
+            var platform_right = $("#"+id+"svg")[0].getBoundingClientRect().right;
+            var platform_bottom= $("#"+id+"svg")[0].getBoundingClientRect().bottom;
+            if(playerX>platform_left && playerX < platform_right && playerY >platform_top && playerY < platform_bottom){
+                //console.log("onPlatform");
+                on = true;
+                break;
+            }
+            else{
+                lastCollideCeilling = false;
+            }
+        }
+
+    }
+    if(on){
+        $("#playermoveY").css("animationPlayState", "paused");
+        $("#player").css("animationPlayState", "running");
+        /*player_life -= 1;
+                timeIn = true;
+                if(player_life >= 0 && !timeIn){
+                    $(".life")[player_life].remove();
+                    setTimeout(function(){
+                        timeIn = false;
+                    }, 2000);
+                }*/
+
+        console.log(previousCollision)
+        if (id.includes("stingPlatform") && previousCollision != id){
+            if(player_life > 4){
+                lifeDeduct(4);
+                previousCollision = id;
+            }
+            else{
+                gameOver();
+            }
+
+        }
+            //lifeDeduct(4);
+        if(!id.includes("stingPlatform") && previousCollision != id){
+                addScore();
+                add= false;
+                console.log(player_life);
+                if(player_life < 10){
+                    console.log("!!!!!!")
+                    lifeAdd(1);
+                }
+                previousCollision = id;
+        }
+        if(collisionWithceiling()){
+            $("#player").css("animationPlayState", "paused");
+            moveDownward();
+            if(player_life > 3){
+                lifeDeduct(3);
+            }
+            else{
+                gameOver();
+            }
+        }
+    }else{
+        moveDownward();
+        $("#player").css("animationPlayState", "paused");
+        add = true;
+
+
+    }
+    checkPlatformRequest1 = requestAnimationFrame(checkOnPlatform);
+
+}
+
+function addScore(){
+    var score = document.getElementById("score").innerHTML;
+    score =  parseInt(score);
+    score+=1
+    document.getElementById("score").innerHTML = score + " &nbsp &nbsp";
+}
+
+function lifeDeduct(n){
+    player_life -= n;
+    while(n > 0){
+        $(".life").last().remove();
+        n -= 1;
+    }
+
+}
+function lifeAdd(){
+    player_life += 1;
+    $(".life:last").after($(".life").last().clone())
 }
 
 function init(){
-    document.getElementById("platform2"+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
-    document.getElementById("platform3"+"svg").setAttribute("x",  Math.floor((Math.random() * 2000)));
+    document.getElementById("platform2"+"svg").setAttribute("x",  Math.floor((Math.random() * 1000)));
+    document.getElementById("platform3"+"svg").setAttribute("x",  Math.floor((Math.random() * 1000)));
     document.getElementById("stingPlatform1"+"svg").setAttribute("x",  Math.floor((Math.random() * 770)));
-    document.getElementById("stingPlatform2"+"svg").setAttribute("x",  Math.floor((Math.random() * 770)));
-    document.getElementById("platform2"+"svg").setAttribute("y",  Math.floor((Math.random() * 2000)+1000));
-    document.getElementById("platform3"+"svg").setAttribute("y",  Math.floor((Math.random() * 2000)+500));
+    //document.getElementById("stingPlatform2"+"svg").setAttribute("x",  Math.floor((Math.random() * 770)));
+    document.getElementById("platform2"+"svg").setAttribute("y",  Math.floor((Math.random() * 10)+10)*100);
+    document.getElementById("platform3"+"svg").setAttribute("y",  Math.floor((Math.random() * 10)+20)*100);
     document.getElementById("stingPlatform1"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
-    document.getElementById("stingPlatform2"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
+    //document.getElementById("stingPlatform2"+"svg").setAttribute("y",  Math.floor((Math.random() * 1000)+250));
+    document.getElementById("landscape1"+"svg").setAttribute("x",Math.floor(Math.random()*600)+100);
+    document.getElementById("landscape1"+"svg").setAttribute("y",Math.floor(Math.random()*700)+100);
+    var landscape = document.getElementsByClassName("landscape");
+    for (var i = 1;i<landscape.length; i++) {
+        var k=i+1;
+        document.getElementById("landscape"+k+"svg").setAttribute("y", 720);
+       // makePlatform("landscape"+k);
+    }
+    //makePlatform("platform4");
+    //makePlatform("platform5");
 
 }
 
 $(document).ready(function(){
+	$("audio")[0].pause();
+	$("audio")[0].currentTime = 0;
+	$("audio")[0].loop = true;
+	$("audio")[0].play();
+	$("#main").css("animationPlayState", "running");
     startAnimation();
     var r = 0;
     var n = 0;
@@ -164,21 +415,8 @@ $(document).ready(function(){
         UP: 38
     };
 
-    function collisionWithceiling(){
-        var player = $("svg #player")[0].getBoundingClientRect();
-        var player_top = player.top;
-
-        var sting = $("svg #sting")[0].getBoundingClientRect();
-        var sting_bottom = sting.bottom;
 
 
-        if (Math.floor(player_top - sting_bottom) <= 2){
-            return true;
-        }
-
-        return false;
-
-    }
     /*var checkCeiling = setInterval(function(){
                     var paused = false;
                     if(collisionWithceiling() && !paused){
@@ -203,25 +441,21 @@ $(document).ready(function(){
         }
     });
 
-    var checkCollision = setInterval(function(){
-            if(!checkCollisions()){
-                moveDownward();
-                $("#player").css("animationPlayState", "paused");
-                /*if(collisionWithPlatforms("#stingPlatform1") ||
-                collisionWithPlatforms("#stingPlatform2") ||
-                collisionWithPlatforms("#stingPlatform3") ||
-                collisionWithPlatforms("#stingPlatform4") ||
-                collisionWithPlatforms("#stingPlatform5")){
-
-                    var bloodDeductionCount = 1;
-                    player_life -= 1;
-                    timeIn = true;
-                    if(player_life >= 0 && bloodDeductionCount != 0){
-                        $(".life")[player_life].remove();
-                        bloodDeductionCount = 0;
-                    }
-                }*/
-            }
+    /*var checkCollision = setInterval(function(){
+        var timeIn = false;
+        if(!collisionWithPlatforms("#platform1")&&
+        !collisionWithPlatforms("#platform2") &&
+        !collisionWithPlatforms("#platform3") &&
+        !collisionWithPlatforms("#platform4") &&
+        !collisionWithPlatforms("#platform5") &&
+        !collisionWithPlatforms("#stingPlatform1") &&
+        !collisionWithPlatforms("#stingPlatform2") &&
+        !collisionWithPlatforms("#stingPlatform3") &&
+        !collisionWithPlatforms("#stingPlatform4") &&
+        !collisionWithPlatforms("#stingPlatform5")){
+            moveDownward();
+            $("#player").css("animationPlayState", "paused");
+        }
 
             else{
                 $("#playermoveY").css("animationPlayState", "paused");
@@ -236,17 +470,22 @@ $(document).ready(function(){
 
 
 
-    },1);
+    },1);*/
 
     $("#platform1").on("animationend", function() {
             // You need to stop the animation here
-            $("#platform1").css("display","none");
+            $("#platform1").css("animation-play-state","paused");
+           // makePlatform("platform1");
+             document.getElementById("platform1svg").setAttribute("y", 2500);
+
 
         });
     $("#platform2").on("animationiteration", function() {
             // You need to stop the animation here
             $("#platform2").css("animation-play-state","paused");
-            makePlatform("platform2");
+           // makePlatform("platform2");
+           document.getElementById("platform2svg").setAttribute("y", 2500);
+
 
         });
 
@@ -254,54 +493,126 @@ $(document).ready(function(){
     $("#platform3").on("animationiteration", function() {
             // You need to stop the animation here
             $("#platform3").css("animation-play-state","paused");
-            makePlatform("platform3");
+            //makePlatform("platform3");
+            document.getElementById("platform3svg").setAttribute("y", 2500);
 
         });
 
      $("#platform4").on("animationiteration", function() {
             // You need to stop the animation here
             $("#platform4").css("animation-play-state","paused");
-            makePlatform("platform4");
+           // makePlatform("platform4");
+           document.getElementById("platform4svg").setAttribute("y", 2500);
 
         });
       $("#platform5").on("animationiteration", function() {
             // You need to stop the animation here
             $("#platform5").css("animation-play-state","paused");
-            makePlatform("platform5");
+           // makePlatform("platform5");
+           document.getElementById("platform5svg").setAttribute("y", 2500);
+
+        });
+
+      $("#platform6").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#platform6").css("animation-play-state","paused");
+           // makePlatform("platform5");
+           document.getElementById("platform6svg").setAttribute("y", 2500);
+
+        });
+
+      $("#platform7").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#platform7").css("animation-play-state","paused");
+           // makePlatform("platform5");
+           document.getElementById("platform7svg").setAttribute("y", 2500);
+
+        });
+
+      $("#platform8").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#platform8").css("animation-play-state","paused");
+           // makePlatform("platform5");
+           document.getElementById("platform8svg").setAttribute("y", 2500);
 
         });
 
       $("#stingPlatform1").on("animationiteration", function() {
             // You need to stop the animation here
             $("#stingPlatform1").css("animation-play-state","paused");
-            makePlatform("stingPlatform1");
+           // makePlatform("stingPlatform1");
+           document.getElementById("stingPlatform1svg").setAttribute("y", 1000);
 
         });
       $("#stingPlatform2").on("animationiteration", function() {
             // You need to stop the animation here
             $("#stingPlatform2").css("animation-play-state","paused");
-            makePlatform("stingPlatform2");
+           // makePlatform("stingPlatform2");
+            document.getElementById("stingPlatform2svg").setAttribute("y", 1000);
 
         });
       $("#stingPlatform3").on("animationiteration", function() {
             // You need to stop the animation here
             $("#stingPlatform3").css("animation-play-state","paused");
-            makePlatform("stingPlatform3");
+            //makePlatform("stingPlatform3");
+             document.getElementById("stingPlatform3svg").setAttribute("y", 1000);
 
         });
       $("#stingPlatform4").on("animationiteration", function() {
             // You need to stop the animation here
             $("#stingPlatform4").css("animation-play-state","paused");
-            makePlatform("stingPlatform4");
+           // makePlatform("stingPlatform4");
+            document.getElementById("stingPlatform4svg").setAttribute("y", 1000);
 
         });
       $("#stingPlatform5").on("animationiteration", function() {
             // You need to stop the animation here
             $("#stingPlatform5").css("animation-play-state","paused");
-            makePlatform("stingPlatform5");
+            //makePlatform("stingPlatform5");
+             document.getElementById("stingPlatform5svg").setAttribute("y", 1000);
+
+        });
+       $("#landscape1Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape1Y").css("animation-play-state","paused");
+           // makePlatform("landscape1");
+           document.getElementById("landscape1svg").setAttribute("y", 720);
+
+        });
+       $("#landscape2Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape2Y").css("animation-play-state","paused");
+            //makePlatform("landscape2");
+             document.getElementById("landscape2svg").setAttribute("y", 720);
+
+        });
+       $("#landscape3Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape3Y").css("animation-play-state","paused");
+           // makePlatform("landscape");
+            document.getElementById("landscape3svg").setAttribute("y", 720);
+
+        });
+       $("#landscape4Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape4Y").css("animation-play-state","paused");
+           // makePlatform("landscape4");
+            document.getElementById("landscape4svg").setAttribute("y", 720);
+
+        });
+       $("#landscape5Y").on("animationiteration", function() {
+            // You need to stop the animation here
+            $("#landscape5Y").css("animation-play-state","paused");
+           // makePlatform("landscape5");
+            document.getElementById("landscape5svg").setAttribute("y", 1020);
 
         });
 
+    startAnimation();
+    randomGen = setTimeout(function(){
+                        makePlatformRequest = requestAnimationFrame(makePlatform);
+                    }, 2000);
+    checkPlatformRequest = requestAnimationFrame(checkOnPlatform);
 	init();
 
 

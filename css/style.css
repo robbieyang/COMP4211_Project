@@ -32,13 +32,13 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	position: absolute;
-	/*display: block;
+	display: block;
 	animation-name: fadeIn;
-	animation-duration: 2s;
+	animation-duration: 1.8s;
 	animation-timing-function: linear;
 	animation-iteration-count: 1;
 	animation-play-state: paused;
-	animation-fill-mode: none;*/
+	animation-fill-mode: none;
 }
 
 #startGame{
@@ -79,6 +79,13 @@
 	font-size: 5vw;
 	background-color: #1E90FF;
 	border: 3px solid #F0FFFF;
+	transition: transform 0.3s ease-out;
+}
+
+#startButton:hover {
+	transform:scale(1.8);
+	color: red;
+	background-color:#87CEFA;
 }
 
 #instruction {
@@ -167,33 +174,116 @@ span{
 
 
 
-@keyframes landscape-animation {
+@keyframes landscape1-animation {
     0% { transform: translateX(100px); }
     50% { transform: translateX(-100px); }
     100% {transform: translateX(100px); }
 
 }
 
-.landscape {
-       	animation-name: landscape-animation;
-        animation-duration: 5s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-        animation-play-state: paused;
+@keyframes landscape2-animation {
+    0% { transform: translateX(-100px); }
+    50% { transform: translateX(100px); }
+    100% {transform: translateX(-100px); }
 
 }
+
+
+
+
 @keyframes landscapeY-animation {
    from {transform: translateY(0px);}
 	to {transform: translateY(-1000px);}
 
 }
 
-#landscape {
+#landscape1Y {
        	animation-name: landscapeY-animation;
         animation-duration: 15s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
+
+}
+#landscape2Y {
+       	animation-name: landscapeY-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+
+}
+#landscape3Y {
+       	animation-name: landscapeY-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+
+}
+#landscape4Y {
+       	animation-name: landscapeY-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+
+}
+
+#landscape5Y {
+       	animation-name: landscapeY-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+
+}
+#landscape1{
+	  	animation-name: landscape1-animation;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+}
+#landscape2{
+	  	animation-name: landscape2-animation;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+}
+
+#landscape3{
+		animation-name: landscape1-animation;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+
+}
+
+#landscape4{
+	animation-name: landscape2-animation;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
+	animation-delay: 3s;
+}
+#landscape5{
+	animation-name: landscape1-animation;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-play-state: paused;
+
 
 }
 
@@ -212,6 +302,7 @@ span{
         animation-timing-function: linear;
 
         animation-play-state: paused;
+
 
 
 }
@@ -247,10 +338,43 @@ span{
 
         animation-play-state: paused;
 
-
 }
 
 #platform5 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+#platform6 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+#platform7 {
+
+		animation-name: platform-animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        animation-play-state: paused;
+
+
+}
+
+#platform8 {
 
 		animation-name: platform-animation;
         animation-duration: 15s;
@@ -364,7 +488,7 @@ span{
 		animation-name: player-move-Y;
 		animation-iteration-count: infinite;
 		animation-fill-mode: forwards;
-		animation-duration: 15s;
+		animation-duration: 5s;
 		animation-timing-function: linear;
 		animation-play-state: paused;
 }

@@ -126,7 +126,7 @@
 	animation-iteration-count: 1;
 	animation-play-state: paused;
 	animation-fill-mode: none;
-}	
+}
 
 #gameover-container {
 	transform: translate(500px,600px);
@@ -308,7 +308,7 @@ span{
 
 		animation-name: platform-animation;
         animation-duration: 15s;
-        animation-iteration-count: 1;
+        animation-iteration-count: infinite;
         animation-timing-function: linear;
 
         animation-play-state: paused;
@@ -489,7 +489,7 @@ span{
 		transform: translateY(0px);
 	}
 	to {
-		transform: translateY(1000px);
+		transform: translateY(2000px);
 	}
 }
 
@@ -498,7 +498,7 @@ span{
 		animation-name: player-move-Y;
 		animation-iteration-count: infinite;
 		animation-fill-mode: forwards;
-		animation-duration: 5s;
+		animation-duration: 8s;
 		animation-timing-function: linear;
 		animation-play-state: paused;
 }

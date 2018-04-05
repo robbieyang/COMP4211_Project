@@ -136,6 +136,8 @@ function countDown() {
 }
 
 function checkGameOver(){
+    var player = $("svg #player")[0].getBoundingClientRect();
+    console.log(player.bottom);
 	if (player_life == 0){
 		cancelAnimationFrame(checkPlatformRequest);
 		cancelAnimationFrame(checkPlatformRequest1);
@@ -203,6 +205,9 @@ function gameOver(){
     console.log("Game Over");
     $("#gameOver").show();
     $("#gameOver").css("animationPlayState", "running");
+    setTimeout(function(){
+            window.location.assign("gameOverScene.html")
+        },700);
 
 }
 function makePlatform() {
@@ -278,8 +283,6 @@ function collisionWithceiling(){
     var sting = $("svg #sting")[0].getBoundingClientRect();
     var sting_bottom = sting.bottom;
 
-    console.log(player_top - sting_bottom);
-
     if (player_top - sting_bottom < 2){
         return true;
     }
@@ -296,6 +299,10 @@ function checkOnPlatform(){
     var on = false;
     var timeIn = false;
     //$("#player").css("animationPlayState", "running");
+    console.log(playerY);
+    if(playerY > 700){
+        gameOver();
+    }
     for (var i = 0; i <platforms.length; i++) {
         var id =platforms[i].getAttribute("id");
         var platform_top = $("#"+id+"svg")[0].getBoundingClientRect().top;
@@ -309,9 +316,6 @@ function checkOnPlatform(){
                 //console.log("onPlatform");
                 on = true;
                 break;
-            }
-            else{
-                lastCollideCeilling = false;
             }
         }
 
@@ -343,7 +347,7 @@ function checkOnPlatform(){
         if(!id.includes("stingPlatform") && previousCollision != id){
                 addScore();
                 add= false;
-                console.log(player_life);
+                //console.log(player_life);
                 if(player_life < 10){
                     console.log("!!!!!!")
                     lifeAdd(1);

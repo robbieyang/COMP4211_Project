@@ -118,6 +118,16 @@
 	border: 3px solid #F0FFFF;
 }
 
+#gameOverScene {
+	display: block;
+	animation-name: fadeIn;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	animation-play-state: paused;
+	animation-fill-mode: none;
+}	
+
 #gameover-container {
 	transform: translate(500px,600px);
 }

@@ -7,6 +7,7 @@ var makePlatformRequest;
 var makePlatformRequest1;
 var checkPlatformRequest;
 var checkPlatformRequest1;
+var score;
 
 var previousCollision = "";
 
@@ -81,7 +82,6 @@ function stopAnimation(){
     $("#stingPlatform3").css("animationPlayState", "paused");
     $("#stingPlatform4").css("animationPlayState", "paused");
     $("#stingPlatform5").css("animationPlayState", "paused");
-	console.log("Player Stop");
     $("#player").css("animationPlayState", "paused");
     //$("#playermoveY").css("animationPlayState", "running");
 
@@ -97,7 +97,7 @@ function stopAnimation(){
 // return true if the player's top <= ceiling bottom position
 
 
-var timeRemaining = 10;
+var timeRemaining = 300;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
 	var minutes = Math.floor(timeRemaining/60);
@@ -123,24 +123,38 @@ function countDown() {
 		$("#gameOver").show();
 		$("#gameOver").css("animationPlayState", "running");
 
+		var queryString = "?Score=" + score;
+
+		setTimeout(function(){
+			window.location.assign("gameOverScene.html"+ queryString);
+		},2300);
+
+
 		//Link the gameOver scene
 		//document.getElementById("gameOver").style.display = "block";
 	}
 }
 
 function checkGameOver(){
+	if (player_life == 0){
+		cancelAnimationFrame(checkPlatformRequest);
+		cancelAnimationFrame(checkPlatformRequest1);
+		stopAnimation();
+		clearTimeout(randomGen);
+		clearTimeout(randomGenPlatform);
+		cancelAnimationFrame(makePlatformRequest);
+		cancelAnimationFrame(makePlatformRequest1);
 
+		console.log("Game Over");
+		$("#gameOver").show();
+		$("#gameOver").css("animationPlayState", "running");
+		setTimeout(function(){
+				window.location.assign("gameOverScene.html")
+			},700);
 
-
-
-
-	//Game Over wordings will be shown with animation
-	$("#gameOver").show();
-	$("#gameOver").css("animationPlayState", "running");
-
-	/**else{
+	}else{
         requestAnimationFrame(checkGameover);
-	}	**/
+	}
 
 }
 
@@ -192,7 +206,7 @@ function gameOver(){
 
 }
 function makePlatform() {
-	console.log ("platform generated");
+	//console.log ("platform generated");
     var id= randomGenerate();
     var tempId = id+"svg";
     var newid="#"+id;
@@ -275,7 +289,6 @@ function collisionWithceiling(){
 }
 
 function checkOnPlatform(){
-	console.log("check on platform");
     var platforms = document.getElementsByClassName("stand");
 
     var playerX = $("#playersvg")[0].getBoundingClientRect().x;
@@ -359,7 +372,7 @@ function checkOnPlatform(){
 }
 
 function addScore(){
-    var score = document.getElementById("score").innerHTML;
+    score = document.getElementById("score").innerHTML;
     score =  parseInt(score);
     score+=1
     document.getElementById("score").innerHTML = score + " &nbsp &nbsp";

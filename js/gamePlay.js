@@ -3,10 +3,13 @@ var player_life = 10;
 var add = false;
 var randomGen;
 var randomGenPlatform;
+var stopTimeOut;
 var makePlatformRequest;
 var makePlatformRequest1;
 var checkPlatformRequest;
 var checkPlatformRequest1;
+var checkOutsideRequest;
+var checkOutsideRequest1;
 var score;
 
 var canMoveL = true;
@@ -88,9 +91,7 @@ function stopAnimation(){
     $("#stingPlatform5").css("animationPlayState", "paused");
     $("#player").css("animationPlayState", "paused");
     //$("#playermoveY").css("animationPlayState", "running");
-
-    var landscape = document.getElementsByClassName("landscape");
-    for (var i = 0;i<landscape.length; i++) {
+    for (var i = 0;i<5; i++) {
         var k=i+1;
 		$("#landscape"+k+"Y").css("animationPlayState", "paused");
         $("#landscape"+k).css("animationPlayState", "paused");
@@ -101,7 +102,7 @@ function stopAnimation(){
 // return true if the player's top <= ceiling bottom position
 
 
-var timeRemaining = 300;
+var timeRemaining = 181;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
 	var minutes = Math.floor(timeRemaining/60);
@@ -115,27 +116,8 @@ function countDown() {
 	if (timeRemaining > 0)
 		setTimeout(countDown, 1000);
 	if (minutes =="0" && seconds=="00") {
-		cancelAnimationFrame(checkPlatformRequest);
-		cancelAnimationFrame(checkPlatformRequest1);
-		stopAnimation();
-		clearTimeout(randomGen);
-		clearTimeout(randomGenPlatform);
-		cancelAnimationFrame(makePlatformRequest);
-		cancelAnimationFrame(makePlatformRequest1);
+		gameOver();
 
-		console.log("Game Over");
-		$("#gameOver").show();
-		$("#gameOver").css("animationPlayState", "running");
-
-		var queryString = "?Score=" + score;
-
-		setTimeout(function(){
-			window.location.assign("gameOverScene.html"+ queryString);
-		},2300);
-
-
-		//Link the gameOver scene
-		//document.getElementById("gameOver").style.display = "block";
 	}
 }
 
@@ -199,8 +181,11 @@ function gameOver(){
     cancelAnimationFrame(checkPlatformRequest);
     cancelAnimationFrame(checkPlatformRequest1);
     stopAnimation();
+	clearTimeout(stopTimeOut);
     clearTimeout(randomGen);
     clearTimeout(randomGenPlatform);
+	cancelAnimationFrame(checkOutsideRequest1);
+	cancelAnimationFrame(checkOutsideRequest);
     cancelAnimationFrame(makePlatformRequest);
     cancelAnimationFrame(makePlatformRequest1);
 
@@ -305,9 +290,12 @@ function checkOnPlatform(){
 
     var playerX = $("#playersvg")[0].getBoundingClientRect().x;
     var playerY = $("#playersvg")[0].getBoundingClientRect().bottom;
+	var bgBottom = $("#background")[0].getBoundingClientRect().bottom;
     var on = false;
     var timeIn = false;
     //$("#player").css("animationPlayState", "running");
+    //console.log(playerY);
+
     if(playerY > 700){
         gameOver();
     }
@@ -315,7 +303,7 @@ function checkOnPlatform(){
         var id =platforms[i].getAttribute("id");
         var platform_top = $("#"+id+"svg")[0].getBoundingClientRect().top;
         //console.log("player: "+playerY+"  platform: "+ platform_top);
-        if(platform_top<637){
+        if(platform_top<bgBottom){
             var idsvg = document.getElementById(id+"svg");
             var platform_left = $("#"+id+"svg")[0].getBoundingClientRect().left;
             var platform_right = $("#"+id+"svg")[0].getBoundingClientRect().right;
@@ -351,7 +339,7 @@ function checkOnPlatform(){
                     }, 2000);
                 }*/
 
-        console.log(previousCollision)
+       // console.log(previousCollision)
         if (id.includes("stingPlatform") && previousCollision != id){
             if(player_life > 4){
                 lifeDeduct(4);
@@ -427,7 +415,7 @@ function checkOutsideScreen(){
         }else{
             canMoveR = true;
         }
-        requestAnimationFrame(checkOutsideScreen);
+        checkOutsideRequest1 = requestAnimationFrame(checkOutsideScreen);
 
 
 }
@@ -657,11 +645,9 @@ $(document).ready(function(){
                         makePlatformRequest = requestAnimationFrame(makePlatform);
                     }, 2000);
     checkPlatformRequest = requestAnimationFrame(checkOnPlatform);
-    requestAnimationFrame(checkOutsideScreen);
+    checkOutsideRequest = requestAnimationFrame(checkOutsideScreen);
 
 	init();
-
-
 
 	countDown();
 

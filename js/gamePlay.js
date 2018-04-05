@@ -9,6 +9,9 @@ var checkPlatformRequest;
 var checkPlatformRequest1;
 var score;
 
+var canMoveL = true;
+var canMoveR = true;
+
 function move(n){
     $("#playermove").css("transform", "translateX(" + n + "px)")
 }
@@ -300,25 +303,28 @@ function checkOnPlatform(){
 
 }
 
-function checkOutsideScreen(str,r){
+function checkOutsideScreen(){
     var playerL = $("#playersvg")[0].getBoundingClientRect().left;
     var playerR = $("#playersvg")[0].getBoundingClientRect().right;
     var bgL = $("#background")[0].getBoundingClientRect().left;
     var bgR = $("#background")[0].getBoundingClientRect().right;
-    if(str.includes("left")){
-        console.log("left: "+(playerL-r) +" "+r);
-        if((playerL-r)<bgL){
-            return false;
+
+        if((playerL-20)<bgL){
+            canMoveL = false;
         }else{
-            return true;
+            canMoveL = true;
         }
-    }else{
-        if((playerR+r)>bgR){
-           return false;
+        //requestAnimationFrame(checkOutsideScreen("left"));
+ 
+   
+        if((playerR+20)>bgR){
+            canMoveR = false;
         }else{
-           return true;
+            canMoveR = true;
         }
-    }
+        requestAnimationFrame(checkOutsideScreen);
+       
+    
 }
 
 function addScore(){
@@ -396,8 +402,8 @@ $(document).ready(function(){
     $(document).on("keydown", function(e){
         switch(e.which){
             case key.LEFT:
-                r -= 20;
-                if( checkOutsideScreen("left",r)){
+                if( canMoveL){
+                    r -= 20;
                     move(r);
                 }
             
@@ -409,8 +415,8 @@ $(document).ready(function(){
                 }*/
                 break;
             case key.RIGHT:
-                r += 20;
-                if(checkOutsideScreen("right",r)){
+                if(canMoveR){
+                    r += 20;
                     move(r);
                 }
                 /*if (collisionWithPlatforms(".platform") == false){
@@ -602,6 +608,8 @@ $(document).ready(function(){
                         makePlatformRequest = requestAnimationFrame(makePlatform);
                     }, 2000);
     checkPlatformRequest = requestAnimationFrame(checkOnPlatform);
+    requestAnimationFrame(checkOutsideScreen);
+
 	init();
 
 

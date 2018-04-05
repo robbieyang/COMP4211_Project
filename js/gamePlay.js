@@ -102,7 +102,7 @@ function stopAnimation(){
 // return true if the player's top <= ceiling bottom position
 
 
-var timeRemaining = 300;
+var timeRemaining = 181;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
 	var minutes = Math.floor(timeRemaining/60);

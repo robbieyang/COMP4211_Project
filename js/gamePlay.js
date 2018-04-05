@@ -25,6 +25,7 @@ function move(n){
     $("#playermove").css("transform", "translateX(" + n + "px)")
 }
 function moveDownward(){
+    //$("audio")[1].play();
     $("#playermoveY").css("animationPlayState", "running");
     //console.log("nope!")
 
@@ -427,6 +428,7 @@ function addScore(){
 }
 
 function lifeDeduct(n){
+    $("audio")[2].play();
     $("progress").fadeOut(100);
     $("progress").fadeIn(100);
     var progress = document.getElementById("health");

@@ -12,23 +12,23 @@
 			$("audio")[0].loop = true;
 			$("audio")[0].play();
 	});
-	
+
 	function start(){
 		<!--document.getElementById("startGame").style.display = "none";-->
 		<!--document.getElementById("main").style.display = "block";-->
 		$("audio")[0].pause();
 		$("audio")[0].currentTime = 0;
 		$("audio")[1].play();
-		
+
 		<!--$("#main").show();-->
 		<!--$("#main").css("animationPlayState", "running");-->
 		setTimeout(function(){
 			window.location.assign("gameScene.html")
 		},700);
 	}
-	
+
 	<!--document.getElementById("startSound").loop = "true";-->
-	
+
 	</script>
 	
 </head>
@@ -36,7 +36,7 @@
 <body>
 	<audio id=startSound><source src="sound/startSound.mp3" type="audio/mpeg"></audio>
 	<audio id=buttonSound><source src="sound/button1.mp3" type="audio/mpeg"></audio>
-	
+
     <!-- the gameStart screen -->
 	<div id="startGame">
 		<svg
@@ -1264,6 +1264,6 @@
 			<div id="startButton" onclick="start()">START</div>
 	</div>
 
-	
+
 </body>
 </html>

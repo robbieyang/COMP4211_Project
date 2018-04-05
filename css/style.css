@@ -79,12 +79,12 @@
 	font-size: 5vw;
 	background-color: #1E90FF;
 	border: 3px solid #F0FFFF;
-	transition: transform 0.3s ease-out; 
+	transition: transform 0.3s ease-out;
 }
 
 #startButton:hover {
 	transform:scale(1.8);
-	color: red;	
+	color: red;
 	background-color:#87CEFA;
 }
 
@@ -148,7 +148,7 @@
 }
 
 #gameOverWording{
-	display: inline-block; 
+	display: inline-block;
 	padding: 25px 25px;
 	color: red;
 	position: absolute;
@@ -160,7 +160,7 @@
 	font-size: 6.5vw;
 	font-weight: bold;
 	background-color: none;
-}	
+}
 
 #finalScore {
 	display: inline-block;
@@ -230,7 +230,7 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-     
+
 
 }
 #landscape4Y {
@@ -239,7 +239,7 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-     
+
 
 }
 
@@ -249,7 +249,7 @@ span{
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-   
+
 
 }
 #landscape1{
@@ -257,7 +257,7 @@ span{
         animation-duration: 5s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-    
+
 }
 #landscape2{
 	  	animation-name: landscape2-animation;
@@ -275,7 +275,7 @@ span{
         animation-timing-function: linear;
         animation-play-state: paused;
 
-	
+
 }
 
 #landscape4{
@@ -347,7 +347,7 @@ span{
         animation-timing-function: linear;
 
         animation-play-state: paused;
- 
+
 }
 
 #platform5 {

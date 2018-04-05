@@ -300,6 +300,27 @@ function checkOnPlatform(){
 
 }
 
+function checkOutsideScreen(str,r){
+    var playerL = $("#playersvg")[0].getBoundingClientRect().left;
+    var playerR = $("#playersvg")[0].getBoundingClientRect().right;
+    var bgL = $("#background")[0].getBoundingClientRect().left;
+    var bgR = $("#background")[0].getBoundingClientRect().right;
+    if(str.includes("left")){
+        console.log("left: "+(playerL-r) +" "+r);
+        if((playerL-r)<bgL){
+            return false;
+        }else{
+            return true;
+        }
+    }else{
+        if((playerR+r)>bgR){
+           return false;
+        }else{
+           return true;
+        }
+    }
+}
+
 function addScore(){
     score = document.getElementById("score").innerHTML;
     score =  parseInt(score);
@@ -376,7 +397,10 @@ $(document).ready(function(){
         switch(e.which){
             case key.LEFT:
                 r -= 20;
-                move(r);
+                if( checkOutsideScreen("left",r)){
+                    move(r);
+                }
+            
                 /*if (collisionWithPlatforms(".platform") == false){
                     console.log("here");
                     n += 5;
@@ -386,7 +410,9 @@ $(document).ready(function(){
                 break;
             case key.RIGHT:
                 r += 20;
-                move(r);
+                if(checkOutsideScreen("right",r)){
+                    move(r);
+                }
                 /*if (collisionWithPlatforms(".platform") == false){
                     console.log("hey");
                 }*/

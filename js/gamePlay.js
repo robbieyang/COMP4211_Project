@@ -91,7 +91,7 @@ function stopAnimation(){
 // return true if the player's top <= ceiling bottom position
 
 
-var timeRemaining = 10;
+var timeRemaining = 300;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
 	var minutes = Math.floor(timeRemaining/60);
@@ -285,7 +285,7 @@ function checkOnPlatform(){
                         timeIn = false;
                     }, 2000);
                 }
-        if(id !="stingPlatform" && add){
+        if(!id.includes("stingPlatform") && add){
             addScore();
             add= false;
         }

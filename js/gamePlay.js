@@ -7,6 +7,8 @@ var makePlatformRequest;
 var makePlatformRequest1;
 var checkPlatformRequest;
 var checkPlatformRequest1;
+var checkOutsideRequest;
+var checkOutsideRequest1;
 var score;
 
 var canMoveL = true;
@@ -115,27 +117,8 @@ function countDown() {
 	if (timeRemaining > 0)
 		setTimeout(countDown, 1000);
 	if (minutes =="0" && seconds=="00") {
-		cancelAnimationFrame(checkPlatformRequest);
-		cancelAnimationFrame(checkPlatformRequest1);
-		stopAnimation();
-		clearTimeout(randomGen);
-		clearTimeout(randomGenPlatform);
-		cancelAnimationFrame(makePlatformRequest);
-		cancelAnimationFrame(makePlatformRequest1);
+		gameOver();
 
-		console.log("Game Over");
-		$("#gameOver").show();
-		$("#gameOver").css("animationPlayState", "running");
-
-		var queryString = "?Score=" + score;
-
-		setTimeout(function(){
-			window.location.assign("gameOverScene.html"+ queryString);
-		},2300);
-
-
-		//Link the gameOver scene
-		//document.getElementById("gameOver").style.display = "block";
 	}
 }
 
@@ -201,6 +184,8 @@ function gameOver(){
     stopAnimation();
     clearTimeout(randomGen);
     clearTimeout(randomGenPlatform);
+	cancelAnimationFrame(checkOutsideRequest1);
+	cancelAnimationFrame(checkOutsideRequest);
     cancelAnimationFrame(makePlatformRequest);
     cancelAnimationFrame(makePlatformRequest1);
 
@@ -210,9 +195,9 @@ function gameOver(){
 
 	var queryString = "?Score=" + score;
 
-	/*setTimeout(function(){
+	setTimeout(function(){
 		window.location.assign("gameOverScene.html"+ queryString);
-	},2300);*/
+	},2300);
 }
 
 function makePlatform() {
@@ -405,7 +390,7 @@ function checkOutsideScreen(){
         }else{
             canMoveR = true;
         }
-        requestAnimationFrame(checkOutsideScreen);
+        checkOutsideRequest1 = requestAnimationFrame(checkOutsideScreen);
 
 
 }
@@ -635,7 +620,7 @@ $(document).ready(function(){
                         makePlatformRequest = requestAnimationFrame(makePlatform);
                     }, 2000);
     checkPlatformRequest = requestAnimationFrame(checkOnPlatform);
-    requestAnimationFrame(checkOutsideScreen);
+    checkOutsideRequest = requestAnimationFrame(checkOutsideScreen);
 
 	init();
 

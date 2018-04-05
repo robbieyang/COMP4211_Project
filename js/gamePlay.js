@@ -5,7 +5,6 @@ function move(n){
 }
 function moveDownward(){
     $("#playermoveY").css("animationPlayState", "running");
-    console.log("nope!")
 
 }
 //return true if the player's bottom <= platform's top
@@ -22,10 +21,9 @@ function collisionWithPlatforms(nameOfObject){
     var platform_left = platform.left;
     var platform_right = platform.right;
 
-    console.log(player_bottom - platform_top);
     if(Math.floor(platform_top - player_bottom) == -12){
-        if(player_right > platform_left && player_left < platform_right){
-            console.log(platform_top - player_bottom + nameOfObject);
+        if(Math.floor(player_right) > Math.floor(platform_left) && Math.floor(player_left) < Math.floor(platform_right)){
+            console.log("coll" + nameOfObject);
             return true;
         }
 
@@ -35,6 +33,19 @@ function collisionWithPlatforms(nameOfObject){
         return false;
     }
 
+}
+
+function checkCollisions(){
+    return (collisionWithPlatforms("#platform1")||
+    collisionWithPlatforms("#platform2") ||
+    collisionWithPlatforms("#platform3") ||
+    collisionWithPlatforms("#platform4") ||
+    collisionWithPlatforms("#platform5") ||
+    collisionWithPlatforms("#stingPlatform1") ||
+    collisionWithPlatforms("#stingPlatform2") ||
+    collisionWithPlatforms("#stingPlatform3") ||
+    collisionWithPlatforms("#stingPlatform4") ||
+    collisionWithPlatforms("#stingPlatform5"));
 }
 
 function startAnimation(){
@@ -182,59 +193,44 @@ $(document).ready(function(){
     $(document).on("keydown", function(e){
         switch(e.which){
             case key.LEFT:
-                r -= 10;
+                r -= 50;
                 move(r);
-                if (collisionWithPlatforms(".platform") == false){
-                    console.log("here");
-                    n += 5;
-                    moveDownward();
-
-                }
                 break;
             case key.RIGHT:
-                r += 10;
+                r += 50;
                 move(r);
-                if (collisionWithPlatforms(".platform") == false){
-                    console.log("hey");
-                }
                 break;
         }
     });
 
     var checkCollision = setInterval(function(){
-        var timeIn = false;
-        if(!collisionWithPlatforms("#platform1")&&
-        !collisionWithPlatforms("#platform2") &&
-        !collisionWithPlatforms("#platform3") &&
-        !collisionWithPlatforms("#platform4") &&
-        !collisionWithPlatforms("#platform5") &&
-        !collisionWithPlatforms("#stingPlatform1") &&
-        !collisionWithPlatforms("#stingPlatform2") &&
-        !collisionWithPlatforms("#stingPlatform3") &&
-        !collisionWithPlatforms("#stingPlatform4") &&
-        !collisionWithPlatforms("#stingPlatform5")){
-            moveDownward();
-            $("#player").css("animationPlayState", "paused");
-        }
+            if(!checkCollisions()){
+                moveDownward();
+                $("#player").css("animationPlayState", "paused");
+                /*if(collisionWithPlatforms("#stingPlatform1") ||
+                collisionWithPlatforms("#stingPlatform2") ||
+                collisionWithPlatforms("#stingPlatform3") ||
+                collisionWithPlatforms("#stingPlatform4") ||
+                collisionWithPlatforms("#stingPlatform5")){
 
-        else{
-            $("#playermoveY").css("animationPlayState", "paused");
-            $("#player").css("animationPlayState", "running");
-            if(collisionWithPlatforms("#stingPlatform1") ||
-            collisionWithPlatforms("#stingPlatform2") ||
-            collisionWithPlatforms("#stingPlatform3") ||
-            collisionWithPlatforms("#stingPlatform4") ||
-            collisionWithPlatforms("#stingPlatform5")){
-                player_life -= 1;
-                timeIn = true;
-                if(player_life >= 0 && !timeIn){
-                    $(".life")[player_life].remove();
-                    setTimeout(function(){
-                        timeIn = false;
-                    }, 2000);
+                    var bloodDeductionCount = 1;
+                    player_life -= 1;
+                    timeIn = true;
+                    if(player_life >= 0 && bloodDeductionCount != 0){
+                        $(".life")[player_life].remove();
+                        bloodDeductionCount = 0;
+                    }
+                }*/
+            }
+
+            else{
+                $("#playermoveY").css("animationPlayState", "paused");
+                $("#player").css("animationPlayState", "running");
+
+                if(collisionWithceiling()){
+                    moveDownward();
                 }
             }
-        }
 
 
 

@@ -91,9 +91,7 @@ function stopAnimation(){
     $("#stingPlatform5").css("animationPlayState", "paused");
     $("#player").css("animationPlayState", "paused");
     //$("#playermoveY").css("animationPlayState", "running");
-
-    var landscape = document.getElementsByClassName("landscape");
-    for (var i = 0;i<landscape.length; i++) {
+    for (var i = 0;i<5; i++) {
         var k=i+1;
 		$("#landscape"+k+"Y").css("animationPlayState", "paused");
         $("#landscape"+k).css("animationPlayState", "paused");
@@ -292,7 +290,7 @@ function checkOnPlatform(){
     var on = false;
     var timeIn = false;
     //$("#player").css("animationPlayState", "running");
-    console.log(playerY);
+    //console.log(playerY);
 	
     if(playerY > 700){
         gameOver();
@@ -326,7 +324,7 @@ function checkOnPlatform(){
                     }, 2000);
                 }*/
 
-        console.log(previousCollision)
+       // console.log(previousCollision)
         if (id.includes("stingPlatform") && previousCollision != id){
             if(player_life > 4){
                 lifeDeduct(4);

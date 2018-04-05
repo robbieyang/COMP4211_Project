@@ -9,10 +9,14 @@ var checkPlatformRequest;
 var checkPlatformRequest1;
 var score;
 
+var canMoveL = true;
+var canMoveR = true;
+
 var previousCollision = "";
 
 var counter = 0;
 var lastCollideCeilling = false;
+
 
 function move(n){
     $("#playermove").css("transform", "translateX(" + n + "px)")
@@ -371,6 +375,30 @@ function checkOnPlatform(){
 
 }
 
+function checkOutsideScreen(){
+    var playerL = $("#playersvg")[0].getBoundingClientRect().left;
+    var playerR = $("#playersvg")[0].getBoundingClientRect().right;
+    var bgL = $("#background")[0].getBoundingClientRect().left;
+    var bgR = $("#background")[0].getBoundingClientRect().right;
+
+        if((playerL-20)<bgL){
+            canMoveL = false;
+        }else{
+            canMoveL = true;
+        }
+        //requestAnimationFrame(checkOutsideScreen("left"));
+ 
+   
+        if((playerR+20)>bgR){
+            canMoveR = false;
+        }else{
+            canMoveR = true;
+        }
+        requestAnimationFrame(checkOutsideScreen);
+       
+    
+}
+
 function addScore(){
     score = document.getElementById("score").innerHTML;
     score =  parseInt(score);
@@ -444,12 +472,27 @@ $(document).ready(function(){
     $(document).on("keydown", function(e){
         switch(e.which){
             case key.LEFT:
-                r -= 50;
-                move(r);
+
+                if( canMoveL){
+                    r -= 20;
+                    move(r);
+                }
+            
+                /*if (collisionWithPlatforms(".platform") == false){
+                    console.log("here");
+                    n += 5;
+                    moveDownward();
+
+                }*/
                 break;
             case key.RIGHT:
-                r += 50;
-                move(r);
+                if(canMoveR){
+                    r += 20;
+                    move(r);
+                }
+                /*if (collisionWithPlatforms(".platform") == false){
+                    console.log("hey");
+                }*/
                 break;
         }
     });
@@ -626,6 +669,8 @@ $(document).ready(function(){
                         makePlatformRequest = requestAnimationFrame(makePlatform);
                     }, 2000);
     checkPlatformRequest = requestAnimationFrame(checkOnPlatform);
+    requestAnimationFrame(checkOutsideScreen);
+
 	init();
 
 

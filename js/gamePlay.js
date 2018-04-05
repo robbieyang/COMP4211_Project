@@ -210,9 +210,9 @@ function gameOver(){
 
 	var queryString = "?Score=" + score;
 
-	/*setTimeout(function(){
+	setTimeout(function(){
 		window.location.assign("gameOverScene.html"+ queryString);
-	},2300);*/
+	},2300);
 }
 
 function makePlatform() {

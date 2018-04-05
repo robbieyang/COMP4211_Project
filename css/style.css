@@ -132,7 +132,7 @@ progress::-webkit-progress-value { background: red; }
 	vertical-align: middle;
 	font-family: 'fantasy', fantasy;
 	text-decoration: none;
-	font-size: 4vw;
+	font-size: 3.5vw;
 	background-color: none;
 	animation-name: animation;
 	animation-duration: 1s;
@@ -143,9 +143,9 @@ progress::-webkit-progress-value { background: red; }
 }
 
 @keyframes animation {
-    0% { transform: rotate(0deg); font-size: 4vw; background-color: none; }
-    50%{ transform: rotate(360deg); font-size: 8vw; background-color: none; }
-	100% { transform: rotate(0deg); font-size: 4vw; background-color: #FF0000;}
+    0% { transform: rotate(0deg); font-size: 4vw; background-color: none;}
+    50%{ transform: rotate(360deg); font-size: 8vw; background-color: none; color: red; }
+	100% { transform: rotate(0deg); font-size: 4vw; background-color: #FF0000; color: red; }
 }
 
 

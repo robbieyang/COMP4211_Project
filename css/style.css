@@ -105,6 +105,8 @@ progress::-webkit-progress-value { background: red; }
 	background-color:#87CEFA;
 }
 
+
+
 #instruction {
 	display: inline-block;
 	padding: 15px 15px;
@@ -121,18 +123,34 @@ progress::-webkit-progress-value { background: red; }
 }
 
 #restartButton {
-	display: inline-block;
-	padding: 25px 25px;
+	display: block;
+	padding: 20px 15px;
 	color: white;
 	position: absolute;
-	top: 70%;
-	left: 40%;
+	top: 71%;
+	left: 41%;
 	vertical-align: middle;
 	font-family: 'fantasy', fantasy;
 	text-decoration: none;
-	font-size: 4.5vw;
-	background-color: #1E90FF;
-	border: 3px solid #F0FFFF;
+	font-size: 4vw;
+	background-color: none;
+	animation-name: animation;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	animation-play-state: paused;
+	animation-fill-mode: forwards;
+}
+
+@keyframes animation {
+    0% { transform: rotate(0deg); font-size: 4vw; background-color: none; }
+    50%{ transform: rotate(360deg); font-size: 8vw; background-color: none; }
+	100% { transform: rotate(0deg); font-size: 4vw; background-color: #FF0000;}
+}
+
+
+#restartButton:hover {
+	color:red;
 }
 
 #gameOverScene {

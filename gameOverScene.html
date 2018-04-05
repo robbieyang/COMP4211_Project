@@ -20,14 +20,19 @@
 			document.getElementById("finalScore").innerHTML = "Score: " + queries[1];
 			
 	});	
-	</script>
-	<style>
-		#battery {
-			top: 70%;
-			left: 40%;
+	
+	function restart(){
+		<!--document.getElementById("startGame").style.display = "none";-->
+		<!--document.getElementById("main").style.display = "block";-->
+
+		$("#restartButton").css("animationPlayState", "running");
 		
-		}
-	</style>
+		setTimeout(function(){
+			window.location.assign("gameScene.html")
+		},2300);
+	}
+	</script>
+
 </head>
 
 
@@ -1592,20 +1597,19 @@
 	  </metadata
 	  >
 
-	<g id="battery" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-		<g transform="translate(200 150)">
-			<path width="100" height="100" x="100" y="100" d="M469.9,192H433v-54c0-5.5-4.3-10-9.9-10H42.1c-5.6,0-10.1,4.5-10.1,10v236c0,5.5,4.5,10,10.1,10h381.1c5.5,0,9.9-4.5,9.9-10  v-54h36.9c5.6,0,10.1-4.5,10.1-10V202C480,196.5,475.5,192,469.9,192z M448,288h-14.8H401v32v32H64V160h337v32v32h32.2H448V288z"/>
+	<g xml:space="preserve">
+		<g transform="translate(970 710)">
+			<path d="M469.9,192H433v-54c0-5.5-4.3-10-9.9-10H42.1c-5.6,0-10.1,4.5-10.1,10v236c0,5.5,4.5,10,10.1,10h381.1c5.5,0,9.9-4.5,9.9-10  v-54h36.9c5.6,0,10.1-4.5,10.1-10V202C480,196.5,475.5,192,469.9,192z M448,288h-14.8H401v32v32H64V160h337v32v32h32.2H448V288z"/>
 		</g>
 	</g>
+	<!--<rect id="battery" width="30" height="198"/> <!--style="" />-->
 	</svg>
 	
-
-
+	
 	<div id="gameOverWording">Game Over</div>
 	<div id="finalScore">Score:</div>
-	
-	<div id="restartButton">Restart</div>
-	</div>
+	<div id="restartButton" onclick="restart()">Restart</div>
+	<!--<div id="battery"><div>-->
 	
 </body>
 </html>

@@ -139,7 +139,7 @@ function countDown() {
 	}
 }
 
-function checkGameOver(){
+/*function checkGameOver(){
 	if (player_life == 0){
 		cancelAnimationFrame(checkPlatformRequest);
 		cancelAnimationFrame(checkPlatformRequest1);
@@ -160,7 +160,7 @@ function checkGameOver(){
         requestAnimationFrame(checkGameover);
 	}
 
-}
+}*/
 
 
 
@@ -207,8 +207,14 @@ function gameOver(){
     console.log("Game Over");
     $("#gameOver").show();
     $("#gameOver").css("animationPlayState", "running");
+	
+	var queryString = "?Score=" + score;
 
+	setTimeout(function(){
+		window.location.assign("gameOverScene.html"+ queryString);
+	},2300);
 }
+
 function makePlatform() {
 	//console.log ("platform generated");
     var id= randomGenerate();

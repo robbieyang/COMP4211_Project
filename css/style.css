@@ -509,6 +509,15 @@ span{
 	}
 }
 
+@keyframes player-move-ceiling{
+	from{
+		top: 150px;
+	}
+	to {
+		top: 300px;
+	}
+}
+
 #playermoveY{
 		position: absolute;
 		animation-name: player-move-Y;

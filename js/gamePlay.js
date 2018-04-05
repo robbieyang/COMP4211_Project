@@ -296,7 +296,11 @@ function collisionWithceiling(){
 
 }
 
+var collisionCounter = 0;
+var prevColli;
+
 function checkOnPlatform(){
+    $("#player").css("animationName", "player-animation");
     var platforms = document.getElementsByClassName("stand");
 
     var playerX = $("#playersvg")[0].getBoundingClientRect().x;
@@ -304,7 +308,6 @@ function checkOnPlatform(){
     var on = false;
     var timeIn = false;
     //$("#player").css("animationPlayState", "running");
-    console.log(playerY);
     if(playerY > 700){
         gameOver();
     }
@@ -317,13 +320,24 @@ function checkOnPlatform(){
             var platform_left = $("#"+id+"svg")[0].getBoundingClientRect().left;
             var platform_right = $("#"+id+"svg")[0].getBoundingClientRect().right;
             var platform_bottom= $("#"+id+"svg")[0].getBoundingClientRect().bottom;
-            if(playerX>platform_left && playerX < platform_right && playerY >platform_top && playerY < platform_bottom){
+            if(playerX>platform_left && playerX < platform_right && playerY >platform_top && playerY < platform_bottom ){
                 //console.log("onPlatform");
-                on = true;
+                //collisionCounter += 1;
+                console.log(lastCollideCeilling);
+                console.log(prevColli);
+                if (lastCollideCeilling && prevColli == id){
+                    console.log("come here");
+                    prevColli = id;
+                }
+                else{
+                    prevColli = id;
+                    lastCollideCeilling = false;
+                    on = true;
+                }
                 break;
             }
-        }
 
+        }
     }
     if(on){
         $("#playermoveY").css("animationPlayState", "paused");
@@ -346,8 +360,8 @@ function checkOnPlatform(){
             else{
                 while(player_life > 0){
                     lifeDeduct(1);
-                    gameOver();
                 }
+                gameOver();
             }
 
         }
@@ -357,13 +371,19 @@ function checkOnPlatform(){
                 add= false;
                 //console.log(player_life);
                 if(player_life < 10){
-                    console.log("!!!!!!")
+                    //console.log("!!!!!!")
                     lifeAdd(1);
                 }
                 previousCollision = id;
         }
         if(collisionWithceiling()){
-            $("#player").css("animationPlayState", "paused");
+            //print("what?")
+                //$("#player").css("animationPlayState", "paused");
+            lastCollideCeilling = true;
+            if(lastCollideCeilling){
+                $("#playermoveY").css("transform", "translateY(100px)");
+                //lastCollideCeilling = false;
+            }
             moveDownward();
             if(player_life > 3){
                 lifeDeduct(3);
@@ -371,17 +391,19 @@ function checkOnPlatform(){
             else{
                 while(player_life > 0){
                     lifeDeduct(1);
-                    gameOver();
                 }
+                gameOver();
             }
         }
     }else{
         moveDownward();
         $("#player").css("animationPlayState", "paused");
         add = true;
+        //checkPlatformRequest1 = requestAnimationFrame(checkOnPlatform);
 
 
     }
+
     checkPlatformRequest1 = requestAnimationFrame(checkOnPlatform);
 
 }

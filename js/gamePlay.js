@@ -1,6 +1,13 @@
 
 var player_life = 10;
 var add = false;
+var randomGen;
+var randomGenPlatform;
+var makePlatformRequest;
+var makePlatformRequest1;
+var checkPlatformRequest;
+var checkPlatformRequest1;
+
 function move(n){
     $("#playermove").css("transform", "translateX(" + n + "px)")
 }
@@ -68,21 +75,23 @@ function stopAnimation(){
     $("#stingPlatform3").css("animationPlayState", "paused");
     $("#stingPlatform4").css("animationPlayState", "paused");
     $("#stingPlatform5").css("animationPlayState", "paused");
+	console.log("Player Stop");
     $("#player").css("animationPlayState", "paused");
     //$("#playermoveY").css("animationPlayState", "running");
 
     var landscape = document.getElementsByClassName("landscape");
     for (var i = 0;i<landscape.length; i++) {
         var k=i+1;
+		$("#landscape"+k+"Y").css("animationPlayState", "paused");
         $("#landscape"+k).css("animationPlayState", "paused");
-        $("#landscape"+k+"Y").css("animationPlayState", "paused");
+        
     }
-
+	
 }
 // return true if the player's top <= ceiling bottom position
 
 
-var timeRemaining = 181;
+var timeRemaining = 10;
 function countDown() {
 	timeRemaining = timeRemaining - 1;
 	var minutes = Math.floor(timeRemaining/60);
@@ -96,9 +105,18 @@ function countDown() {
 	if (timeRemaining > 0)
 		setTimeout(countDown, 1000);
 	if (minutes =="0" && seconds=="00") {
-		console.log("Time's up");
+		cancelAnimationFrame(checkPlatformRequest);
+		cancelAnimationFrame(checkPlatformRequest1);
+		stopAnimation();
+		clearTimeout(randomGen);
+		clearTimeout(randomGenPlatform);
+		cancelAnimationFrame(makePlatformRequest);
+		cancelAnimationFrame(makePlatformRequest1);
+		
+		console.log("Game Over");
 		$("#gameOver").show();
 		$("#gameOver").css("animationPlayState", "running");
+		
 		//Link the gameOver scene
 		//document.getElementById("gameOver").style.display = "block";
 	}
@@ -109,9 +127,14 @@ function checkGameOver(){
 
 
 
+
 	//Game Over wordings will be shown with animation
 	$("#gameOver").show();
 	$("#gameOver").css("animationPlayState", "running");
+	
+	/**else{
+        requestAnimationFrame(checkGameover);
+	}	**/
 
 }
 
@@ -149,6 +172,7 @@ function checkGameOver(){
 }*/
 
 function makePlatform() {
+	console.log ("platform generated");
     var id= randomGenerate();
     var tempId = id+"svg";
     var newid="#"+id;
@@ -183,8 +207,8 @@ function makePlatform() {
     }
     var waitTime = (Math.floor((Math.random() * 30))+15)*100;
 
-    setTimeout(function() {
-            requestAnimationFrame(makePlatform);
+    randomGenPlatform = setTimeout(function() {
+            makePlatformRequest1 = requestAnimationFrame(makePlatform);
 
     }, waitTime);
 
@@ -214,6 +238,7 @@ function randomGenerate(){
 }
 
 function checkOnPlatform(){
+	console.log("check on platform");
     var platforms = document.getElementsByClassName("stand");
 
     var playerX = $("#playersvg")[0].getBoundingClientRect().x;
@@ -258,7 +283,7 @@ function checkOnPlatform(){
         
           
     }
-    requestAnimationFrame(checkOnPlatform);
+    checkPlatformRequest1 = requestAnimationFrame(checkOnPlatform);
 
 }
 
@@ -534,10 +559,10 @@ $(document).ready(function(){
         });
 
     startAnimation();
-    setTimeout(function(){
-                        requestAnimationFrame( makePlatform);
+    randomGen = setTimeout(function(){
+                        makePlatformRequest = requestAnimationFrame(makePlatform);
                     }, 2000);
-    requestAnimationFrame(checkOnPlatform);
+    checkPlatformRequest = requestAnimationFrame(checkOnPlatform);
 	init();
 
 

@@ -3,6 +3,7 @@ var player_life = 10;
 var add = false;
 var randomGen;
 var randomGenPlatform;
+var stopTimeOut;
 var makePlatformRequest;
 var makePlatformRequest1;
 var checkPlatformRequest;
@@ -182,6 +183,7 @@ function gameOver(){
     cancelAnimationFrame(checkPlatformRequest);
     cancelAnimationFrame(checkPlatformRequest1);
     stopAnimation();
+	clearTimeout(stopTimeOut);
     clearTimeout(randomGen);
     clearTimeout(randomGenPlatform);
 	cancelAnimationFrame(checkOutsideRequest1);
@@ -286,10 +288,12 @@ function checkOnPlatform(){
 
     var playerX = $("#playersvg")[0].getBoundingClientRect().x;
     var playerY = $("#playersvg")[0].getBoundingClientRect().bottom;
+	var bgBottom = $("#background")[0].getBoundingClientRect().bottom;
     var on = false;
     var timeIn = false;
     //$("#player").css("animationPlayState", "running");
     console.log(playerY);
+	
     if(playerY > 700){
         gameOver();
     }
@@ -297,7 +301,7 @@ function checkOnPlatform(){
         var id =platforms[i].getAttribute("id");
         var platform_top = $("#"+id+"svg")[0].getBoundingClientRect().top;
         //console.log("player: "+playerY+"  platform: "+ platform_top);
-        if(platform_top<637){
+        if(platform_top<bgBottom){
             var idsvg = document.getElementById(id+"svg");
             var platform_left = $("#"+id+"svg")[0].getBoundingClientRect().left;
             var platform_right = $("#"+id+"svg")[0].getBoundingClientRect().right;
@@ -357,6 +361,7 @@ function checkOnPlatform(){
                 while(player_life > 0){
                     lifeDeduct(1);
                     gameOver();
+					break;
                 }
             }
         }
@@ -367,8 +372,16 @@ function checkOnPlatform(){
 
 
     }
-    checkPlatformRequest1 = requestAnimationFrame(checkOnPlatform);
-
+	/*if(collisionWithceiling()){
+		stopTimeOut = setTimeout(function(){
+                        checkPlatformRequest1 = requestAnimationFrame(checkOnPlatform);
+                    }, 105);
+	}else if (playerY > 700){
+        console.log("Done");
+    }else {
+		checkPlatformRequest1 = requestAnimationFrame(checkOnPlatform);
+	}*/	
+	checkPlatformRequest1 = requestAnimationFrame(checkOnPlatform);
 }
 
 function checkOutsideScreen(){
@@ -623,8 +636,6 @@ $(document).ready(function(){
     checkOutsideRequest = requestAnimationFrame(checkOutsideScreen);
 
 	init();
-
-
 
 	countDown();
 

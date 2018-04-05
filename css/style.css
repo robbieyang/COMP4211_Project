@@ -10,6 +10,23 @@
 	margin-left: 300px;
 	float: left;
 }
+.score{
+	float: left;
+}
+progress[value]{
+	border-color: white;
+	border-width: 2px;
+	margin-right: 3px;
+	margin-top: 5px;
+	float: left;
+	display: block;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 250px;
+	height: 30px;
+}
+
+progress::-webkit-progress-value { background: red; }
 
 .life{
 	border-style: solid;
@@ -451,7 +468,7 @@ span{
 
 @keyframes player-animation{
 	from {transform: translateY(0px);}
-	to {transform: translateY(-30000px);}
+	to {transform: translateY(-20000px);}
 
 }
 
@@ -460,11 +477,10 @@ span{
 #player {
 		position: absolute;
 		animation-name: player-animation;
-        animation-duration: 450s;
+        animation-duration: 300s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;
-
 }
 
 @keyframes fadeIn {
@@ -489,7 +505,7 @@ span{
 		transform: translateY(0px);
 	}
 	to {
-		transform: translateY(2000px);
+		transform: translateY(120000px);
 	}
 }
 
@@ -497,10 +513,10 @@ span{
 		position: absolute;
 		animation-name: player-move-Y;
 		animation-iteration-count: infinite;
-		animation-fill-mode: forwards;
-		animation-duration: 8s;
+		animation-duration: 300s;
 		animation-timing-function: linear;
 		animation-play-state: paused;
+		animation-fill-mode: forwards;
 }
 
 @keyframes fadeOut {

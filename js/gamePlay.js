@@ -210,9 +210,9 @@ function gameOver(){
 
 	var queryString = "?Score=" + score;
 
-	setTimeout(function(){
+	/*setTimeout(function(){
 		window.location.assign("gameOverScene.html"+ queryString);
-	},2300);
+	},2300);*/
 }
 
 function makePlatform() {
@@ -409,7 +409,6 @@ function checkOutsideScreen(){
 
 
 }
-
 function addScore(){
     score = document.getElementById("score").innerHTML;
     score =  parseInt(score);
@@ -418,16 +417,16 @@ function addScore(){
 }
 
 function lifeDeduct(n){
+    var progress = document.getElementById("health");
     player_life -= n;
-    while(n > 0){
-        $(".life").last().remove();
-        n -= 1;
-    }
+
+    progress.value -= n*10;
 
 }
 function lifeAdd(){
+    var progress = document.getElementById("health");
     player_life += 1;
-    $(".life:last").after($(".life").last().clone())
+    progress.value += 10;
 }
 
 function init(){
@@ -467,19 +466,6 @@ $(document).ready(function(){
         UP: 38
     };
 
-
-
-    /*var checkCeiling = setInterval(function(){
-                    var paused = false;
-                    if(collisionWithceiling() && !paused){
-                        paused = true;
-                        player_life -= 1;
-                        `if(player_life >= 0){
-                            $(".life")[player_life].remove();
-                        }`
-                    }
-                }, 50);*/
-
     $(document).on("keydown", function(e){
         switch(e.which){
             case key.LEFT:
@@ -507,37 +493,6 @@ $(document).ready(function(){
                 break;
         }
     });
-
-    /*var checkCollision = setInterval(function(){
-        var timeIn = false;
-        if(!collisionWithPlatforms("#platform1")&&
-        !collisionWithPlatforms("#platform2") &&
-        !collisionWithPlatforms("#platform3") &&
-        !collisionWithPlatforms("#platform4") &&
-        !collisionWithPlatforms("#platform5") &&
-        !collisionWithPlatforms("#stingPlatform1") &&
-        !collisionWithPlatforms("#stingPlatform2") &&
-        !collisionWithPlatforms("#stingPlatform3") &&
-        !collisionWithPlatforms("#stingPlatform4") &&
-        !collisionWithPlatforms("#stingPlatform5")){
-            moveDownward();
-            $("#player").css("animationPlayState", "paused");
-        }
-
-            else{
-                $("#playermoveY").css("animationPlayState", "paused");
-                $("#player").css("animationPlayState", "running");
-
-                if(collisionWithceiling()){
-                    moveDownward();
-                }
-            }
-
-
-
-
-
-    },1);*/
 
     $("#platform1").on("animationend", function() {
             // You need to stop the animation here

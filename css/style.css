@@ -451,7 +451,7 @@ span{
 
 @keyframes player-animation{
 	from {transform: translateY(0px);}
-	to {transform: translateY(-1000px);}
+	to {transform: translateY(-30000px);}
 
 }
 
@@ -460,7 +460,7 @@ span{
 #player {
 		position: absolute;
 		animation-name: player-animation;
-        animation-duration: 15s;
+        animation-duration: 450s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-play-state: paused;

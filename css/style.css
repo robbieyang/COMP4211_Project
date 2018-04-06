@@ -127,10 +127,10 @@ progress::-webkit-progress-value {
 
 #restartButton {
 	display: block;
-	padding: 20px 15px;
+	padding: 22px 15px;
 	color: white;
 	position: absolute;
-	top: 74%;
+	top: 72%;
 	left: 41%;
 	vertical-align: middle;
 	font-family: 'fantasy', fantasy;

@@ -428,7 +428,7 @@ function addScore(){
 }
 
 function lifeDeduct(n){
-    $("audio")[2].play();
+    $("audio")[1].play();
     $("progress").fadeOut(100);
     $("progress").fadeIn(100);
     var progress = document.getElementById("health");
@@ -508,7 +508,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#platform1").on("animationend", function() {
+    $("#platform1").on("animationiteration", function() {
             // You need to stop the animation here
             $("#platform1").css("animation-play-state","paused");
            // makePlatform("platform1");

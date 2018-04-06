@@ -1,5 +1,11 @@
 # COMP4021_Project
 
+This game is designed for Chrome browser. Please use Chrome browser in order to have a better game experience.
+
+
+
+
+
 To clone the project, open the terminal and type:
 
 git clone https://github.com/robbieyang/COMP4211_Project.git
